@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 
 export function FormatCards() {
   return (
-    <section id="formats" aria-labelledby="formats-heading" className="scroll-mt-16 border-t border-ink-line py-24 sm:py-32">
+    <section id="formats" aria-labelledby="formats-heading" className="scroll-mt-20 border-t border-ink-line py-24 sm:py-32">
       <Container>
         <Reveal className="max-w-2xl">
           <SectionHeading eyebrow="Get the book" id="formats-heading">

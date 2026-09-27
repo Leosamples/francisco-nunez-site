@@ -22,7 +22,7 @@ export function SiteNav({ links = [], cta }: { links?: NavItem[]; cta?: NavItem 
         scrolled ? "border-b border-ink-line bg-ink/80 backdrop-blur-md" : "border-b border-transparent"
       }`}
     >
-      <Container className="flex h-16 items-center justify-between gap-6">
+      <Container className="flex h-20 items-center justify-between gap-6">
         <Logo />
         <div className="flex items-center gap-7">
           {links.length > 0 && (

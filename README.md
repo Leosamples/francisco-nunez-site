@@ -11,7 +11,7 @@ Right now the site is only the book funnel for *The Source Code to Focus*, serve
 - `src/components/book/` — funnel sections, and the 3D book (`BookStage` → `BookCanvas`).
 - `src/content/` — all copy and config. `book.ts` holds the chapters, bonus, bio, prices, distributor links, and the cover image (`BOOK_COVER`).
 - Brand tokens live in `src/app/globals.css` (`@theme`).
-- Master logo: `public/images/logo.png`. The nav/footer mark (`public/brand/fn-mark.png`) and favicon (`src/app/icon.png`) are cropped from it.
+- Logo: `public/images/logo.png`, used as-is in the nav and footer. The favicon (`src/app/icon.png`) is the emblem cropped from it.
 
 ## Setup
 

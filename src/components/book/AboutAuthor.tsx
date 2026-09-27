@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 
 export function AboutAuthor() {
   return (
-    <section id="author" aria-labelledby="author-heading" className="scroll-mt-16 border-t border-ink-line py-24 sm:py-32">
+    <section id="author" aria-labelledby="author-heading" className="scroll-mt-20 border-t border-ink-line py-24 sm:py-32">
       <Container className="grid items-center gap-12 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <Reveal>
           <div className="relative mx-auto max-w-sm">

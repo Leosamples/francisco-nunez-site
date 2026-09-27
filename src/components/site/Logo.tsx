@@ -1,23 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// FN flame mark + wordmark. The mark (/brand/fn-mark.png) and the favicon
-// (app/icon.png) are cropped from the master logo at /images/logo.png. The
-// logo's own navy lettering doesn't read on the dark ground, so the name is
-// set in type beside the mark.
-export function Logo() {
+// The master logo file, shown as-is. It has wide transparent margins, so the
+// wrapper clips to the artwork's bounds (372,164 → 1172,780 of 1536×1024).
+const LOGO = { src: "/images/logo.png", width: 1536, height: 1024 };
+const ART = { x: 372, y: 164, w: 800, h: 616 };
+
+const heights = {
+  nav: "h-14",
+  footer: "h-20",
+};
+
+export function Logo({ size = "nav" }: { size?: keyof typeof heights }) {
   return (
-    <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Francisco Nunez — home">
-      <Image
-        src="/brand/fn-mark.png"
-        alt=""
-        width={294}
-        height={240}
-        priority
-        className="h-9 w-auto drop-shadow-[0_0_10px_rgba(79,200,240,0.35)] transition group-hover:drop-shadow-[0_0_14px_rgba(79,200,240,0.6)]"
-      />
-      <span className="whitespace-nowrap text-xs font-extrabold uppercase tracking-[0.12em] text-paper transition group-hover:text-cyan sm:text-sm sm:tracking-[0.18em]">
-        Francisco Nunez
+    <Link href="/" aria-label="Francisco Nunez — home" className="inline-block">
+      <span
+        className={`relative block overflow-hidden ${heights[size]}`}
+        style={{ aspectRatio: `${ART.w} / ${ART.h}` }}
+      >
+        <Image
+          src={LOGO.src}
+          width={LOGO.width}
+          height={LOGO.height}
+          alt="Francisco Nunez"
+          priority={size === "nav"}
+          sizes="200px"
+          className="absolute max-w-none"
+          style={{
+            width: `${(LOGO.width / ART.w) * 100}%`,
+            left: `${(-ART.x / ART.w) * 100}%`,
+            top: `${(-ART.y / ART.h) * 100}%`,
+          }}
+        />
       </span>
     </Link>
   );

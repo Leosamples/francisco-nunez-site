@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 export function FocusFramework() {
   const { eyebrow, heading, intro, disciplines } = focusFramework;
   return (
-    <section id="bonus" aria-labelledby="bonus-heading" className="scroll-mt-16 pb-24 sm:pb-32">
+    <section id="bonus" aria-labelledby="bonus-heading" className="scroll-mt-20 pb-24 sm:pb-32">
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-cyan/25 bg-ink-raised p-6 sm:p-10 lg:p-14">
           <div

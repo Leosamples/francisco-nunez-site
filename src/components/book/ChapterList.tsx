@@ -12,7 +12,7 @@ export function ChapterList() {
   const baseId = useId();
 
   return (
-    <section id="chapters" aria-labelledby="chapters-heading" className="scroll-mt-16 py-24 sm:py-32">
+    <section id="chapters" aria-labelledby="chapters-heading" className="scroll-mt-20 py-24 sm:py-32">
       <Container className="grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading eyebrow="Inside the book" id="chapters-heading">
