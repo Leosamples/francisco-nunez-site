@@ -64,7 +64,7 @@ export function BookStage() {
           alt={`${book.title} by ${book.author}`}
           priority
           sizes="(min-width: 1024px) 22rem, 60vw"
-          className="w-[62%] rounded-[3px] shadow-[18px_24px_60px_-12px_rgba(0,0,0,0.8),0_0_60px_-20px_var(--color-cyan)] [transform:rotateY(-22deg)_rotateX(3deg)]"
+          className="w-[62%] rounded-[3px] shadow-[18px_24px_60px_-12px_rgba(0,0,0,0.8)] [transform:rotateY(-22deg)_rotateX(3deg)]"
         />
       </div>
       {load3D && (

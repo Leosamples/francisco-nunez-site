@@ -6,35 +6,26 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 export function FocusFramework() {
   const { eyebrow, heading, intro, disciplines } = focusFramework;
   return (
-    <section id="bonus" aria-labelledby="bonus-heading" className="scroll-mt-20 pb-24 sm:pb-32">
+    <section id="bonus" aria-labelledby="bonus-heading" className="scroll-mt-20 border-t border-ink-line py-28 sm:py-40 lg:py-48">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-cyan/25 bg-ink-raised p-6 sm:p-10 lg:p-14">
-          <div
-            aria-hidden
-            className="absolute -right-24 -top-24 size-72 rounded-full bg-cyan/10 blur-3xl"
-          />
-          <Reveal className="relative max-w-2xl space-y-5">
-            <span className="bg-flame inline-block rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.2em]">
-              {eyebrow}
-            </span>
-            <SectionHeading id="bonus-heading">{heading}</SectionHeading>
-            <p className="text-lg text-slate">{intro}</p>
-          </Reveal>
+        <Reveal className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
+          <SectionHeading eyebrow={eyebrow} id="bonus-heading">
+            {heading}
+          </SectionHeading>
+          <p className="max-w-[60ch] text-lg leading-relaxed text-slate lg:pt-12">{intro}</p>
+        </Reveal>
 
-          <ol className="relative mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink-line bg-ink-line sm:grid-cols-2 lg:grid-cols-3">
-            {disciplines.map((d, i) => (
-              <li key={d.title} className="bg-ink-raised">
-                <Reveal delay={(i % 3) * 0.08} className="h-full space-y-3 p-6 sm:p-7">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan">
-                    Discipline {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="text-xl font-extrabold tracking-tight">{d.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate">{d.body}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <ol className="mt-20 grid gap-x-12 gap-y-14 sm:grid-cols-2 lg:mt-28 lg:grid-cols-3">
+          {disciplines.map((d, i) => (
+            <li key={d.title}>
+              <Reveal delay={(i % 3) * 0.08} className="border-t border-ink-line pt-6">
+                <p className="text-sm font-semibold tabular-nums text-cyan">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-4 text-2xl font-bold tracking-tight">{d.title}</h3>
+                <p className="mt-3 leading-relaxed text-slate">{d.body}</p>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
       </Container>
     </section>
   );

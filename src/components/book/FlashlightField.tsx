@@ -11,11 +11,11 @@ function seeded(seed: number) {
 }
 
 const rand = seeded(7);
-const DOTS: Dot[] = Array.from({ length: 22 }, () => ({
+const DOTS: Dot[] = Array.from({ length: 12 }, () => ({
   x: rand() * 100,
   y: rand() * 100,
   size: 90 + rand() * 170,
-  opacity: 0.05 + rand() * 0.09,
+  opacity: 0.03 + rand() * 0.05,
   dx: (rand() - 0.5) * 40,
   dy: (rand() - 0.5) * 40,
   delay: rand() * -18,

@@ -7,14 +7,14 @@ import { Reveal } from "@/components/site/Reveal";
 // The field is disabled so visitors can't type an address that goes nowhere.
 export function EmailCapture() {
   return (
-    <section id="updates" aria-labelledby="updates-heading" className="scroll-mt-20 pb-24 sm:pb-32">
+    <section id="updates" aria-labelledby="updates-heading" className="scroll-mt-20 border-t border-ink-line py-28 sm:py-40">
       <Container>
-        <Reveal className="mx-auto max-w-2xl rounded-3xl border border-ink-line bg-[radial-gradient(ellipse_at_top,rgba(79,200,240,0.12),transparent_70%)] px-6 py-12 text-center sm:px-12">
-          <h2 id="updates-heading" className="text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <h2 id="updates-heading" className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {emailCapture.heading}
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-slate">{emailCapture.body}</p>
-          <div className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+          <p className="mx-auto mt-4 max-w-md text-lg text-slate">{emailCapture.body}</p>
+          <div className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row">
             <label htmlFor="updates-email" className="sr-only">
               Email address
             </label>

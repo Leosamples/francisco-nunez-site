@@ -12,13 +12,13 @@ export function ChapterList() {
   const baseId = useId();
 
   return (
-    <section id="chapters" aria-labelledby="chapters-heading" className="scroll-mt-20 py-24 sm:py-32">
-      <Container className="grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+    <section id="chapters" aria-labelledby="chapters-heading" className="scroll-mt-20 border-t border-ink-line py-28 sm:py-40 lg:py-48">
+      <Container className="grid gap-14 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading eyebrow="Inside the book" id="chapters-heading">
             Eight chapters. One target.
           </SectionHeading>
-          <p className="mt-5 max-w-sm text-slate">Tap a chapter to see what it covers.</p>
+          <p className="mt-6 max-w-sm text-lg text-slate">Tap a chapter to see what it covers.</p>
         </Reveal>
 
         <div>

@@ -6,28 +6,25 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 
 export function AboutAuthor() {
   return (
-    <section id="author" aria-labelledby="author-heading" className="scroll-mt-20 border-t border-ink-line py-24 sm:py-32">
-      <Container className="grid items-center gap-12 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <section id="author" aria-labelledby="author-heading" className="scroll-mt-20 py-28 sm:py-40 lg:py-48">
+      <Container className="grid items-center gap-14 md:grid-cols-[0.85fr_1.15fr] lg:gap-24">
         <Reveal>
-          <div className="relative mx-auto max-w-sm">
-            <div aria-hidden className="bg-flame absolute -inset-px rounded-2xl opacity-60 blur-xl" />
-            <Image
-              src={author.photo.src}
-              width={author.photo.width}
-              height={author.photo.height}
-              alt={`Portrait of ${author.name}`}
-              sizes="(min-width: 768px) 24rem, 90vw"
-              className="relative aspect-[4/5] w-full rounded-2xl object-cover object-top"
-            />
-          </div>
+          <Image
+            src={author.photo.src}
+            width={author.photo.width}
+            height={author.photo.height}
+            alt={`Portrait of ${author.name}`}
+            sizes="(min-width: 768px) 28rem, 90vw"
+            className="mx-auto aspect-[4/5] w-full max-w-md rounded-lg object-cover object-top"
+          />
         </Reveal>
-        <Reveal delay={0.1} className="space-y-6">
+        <Reveal delay={0.1}>
           <SectionHeading eyebrow="About the author" id="author-heading">
             {author.name}
           </SectionHeading>
-          <div className="space-y-4 text-lg leading-relaxed text-slate">
+          <div className="mt-8 max-w-[60ch] space-y-5 text-lg leading-relaxed text-slate">
             {author.bio.map((p, i) => (
-              <p key={i} className={i === author.bio.length - 1 ? "font-semibold text-paper" : undefined}>
+              <p key={i} className={i === author.bio.length - 1 ? "text-paper" : undefined}>
                 {p}
               </p>
             ))}

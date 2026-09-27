@@ -3,12 +3,11 @@ import Link from "next/link";
 type Variant = "primary" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-bold tracking-wide transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-flame text-paper shadow-[0_0_32px_-8px_var(--color-cyan)] hover:shadow-[0_0_44px_-6px_var(--color-cyan)] hover:brightness-110",
-  ghost: "border border-ink-line text-paper hover:border-cyan hover:text-cyan",
+  primary: "bg-cyan text-ink hover:bg-paper",
+  ghost: "border border-paper/20 text-paper hover:border-paper/60",
 };
 
 const sizes = {

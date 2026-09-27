@@ -3,12 +3,13 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { AboutAuthor } from "./AboutAuthor";
 import { ChapterList } from "./ChapterList";
+import { ChapterMarquee } from "./ChapterMarquee";
 import { EmailCapture } from "./EmailCapture";
 import { FocusFramework } from "./FocusFramework";
 import { FormatCards } from "./FormatCards";
 import { Hero } from "./Hero";
 import { Hook } from "./Hook";
-import { LaserBeam } from "./LaserBeam";
+import { LaserShow } from "./LaserShow";
 import { PullQuote } from "./PullQuote";
 
 /**
@@ -25,12 +26,13 @@ export function BookFunnel() {
         <PullQuote />
         <ChapterList />
         <FocusFramework />
+        <ChapterMarquee />
         <AboutAuthor />
         <FormatCards />
         <EmailCapture />
       </main>
       <SiteFooter links={funnelNav} />
-      <LaserBeam heroId="hero" />
+      <LaserShow heroId="hero" />
     </>
   );
 }

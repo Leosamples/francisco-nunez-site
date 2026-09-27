@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 
 /**
- * Short fade + slight rise (500ms, 16px) the first time an element scrolls
+ * Short fade + slight rise (600ms, 20px) the first time an element scrolls
  * into view. Reduced motion: never hidden, never animated.
  *
  * Content is server-rendered visible; only elements still below the fold
@@ -38,9 +38,9 @@ export function Reveal({
       ref={ref}
       className={className}
       initial={false}
-      animate={hidden ? { opacity: 0, y: 16 } : { opacity: 1, y: 0 }}
+      animate={hidden ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
       transition={
-        hidden ? { duration: 0 } : { duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] }
+        hidden ? { duration: 0 } : { duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }
       }
     >
       {children}

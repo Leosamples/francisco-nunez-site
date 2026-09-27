@@ -6,6 +6,9 @@ import type { NavItem } from "./site";
 
 export const book = {
   title: "The Source Code to Focus",
+  // The hero sets the title in two parts; the second part glows.
+  titleLead: "The Source",
+  titleGlow: "Code to Focus",
   subtitle: "How to become a laser in a room full of flashlights",
   author: "Francisco Nunez",
 };

@@ -17,8 +17,7 @@
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 
   --animate-drift: drift 18s ease-in-out infinite alternate;
-  --animate-beam-pulse: beam-pulse 4.5s ease-in-out infinite;
-  --animate-beam-fire: beam-fire 2s linear infinite;
+  --animate-marquee: marquee 45s linear infinite;
 
   @keyframes drift {
     from {
@@ -29,53 +28,23 @@
     }
   }
 
-  /*
-   * A bright pulse shoots along the on-screen stretch of the beam, then rests
-   * briefly before the next shot. The beam is 220vmax long and centered on the
-   * viewport; the stretch that's actually on screen is about ±55vw around its
-   * midpoint (110vmax) at any aspect ratio. Translate values are the pulse's
-   * left edge (pulse is 18vmax wide), so its head runs midpoint ± 70vw.
-   */
-  @keyframes beam-fire {
-    0% {
-      transform: translateX(calc(92vmax - 70vw));
-      opacity: 0;
+  /* Two identical copies of the track sit side by side; -50% loops seamlessly. */
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
     }
-    6% {
-      opacity: 1;
-    }
-    54% {
-      opacity: 1;
-    }
-    60% {
-      transform: translateX(calc(92vmax + 70vw));
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(calc(92vmax + 70vw));
-      opacity: 0;
-    }
-  }
-
-  @keyframes beam-pulse {
-    0%,
-    100% {
-      opacity: 0.85;
-    }
-    50% {
-      opacity: 1;
+    to {
+      transform: translate3d(-50%, 0, 0);
     }
   }
 }
 
-@utility bg-flame {
-  background-image: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-navy) 100%);
-}
-
-@utility text-flame {
-  background-image: linear-gradient(120deg, var(--color-paper) 30%, var(--color-cyan) 100%);
-  background-clip: text;
-  color: transparent;
+/* Luminous cyan text, used once: "Code to Focus" in the hero. */
+@utility text-glow {
+  color: var(--color-cyan);
+  text-shadow:
+    0 0 18px rgb(79 200 240 / 0.55),
+    0 0 52px rgb(79 200 240 / 0.3);
 }
 
 html {
