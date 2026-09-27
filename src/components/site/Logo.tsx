@@ -1,15 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
 
-// Temporary wordmark. Swap the mark for the FN flame logo SVG once it's supplied.
+// FN flame mark + wordmark. The logo file's own navy lettering doesn't read on
+// the dark ground, so the name is set in type beside the mark.
 export function Logo() {
   return (
     <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Francisco Nunez — home">
-      <span
-        aria-hidden
-        className="bg-flame grid size-8 place-items-center rounded-md text-xs font-extrabold tracking-tight text-paper"
-      >
-        FN
-      </span>
+      <Image
+        src="/brand/fn-mark.png"
+        alt=""
+        width={294}
+        height={240}
+        priority
+        className="h-9 w-auto drop-shadow-[0_0_10px_rgba(79,200,240,0.35)] transition group-hover:drop-shadow-[0_0_14px_rgba(79,200,240,0.6)]"
+      />
       <span className="whitespace-nowrap text-xs font-extrabold uppercase tracking-[0.12em] text-paper transition group-hover:text-cyan sm:text-sm sm:tracking-[0.18em]">
         Francisco Nunez
       </span>
