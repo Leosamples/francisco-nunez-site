@@ -14,11 +14,11 @@ export const book = {
 };
 
 /**
- * The 3D book's front-cover texture and the static fallback image.
- * To use the real cover, drop a flat, straight-on cover image
- * (≈1600×2400, 2:3) in /public/images and change `src` below.
+ * The final cover (concept 6 from "First Covers -TSC.pdf"), flattened from the
+ * mockup to the front face only. Drives the 3D book's texture and proportions,
+ * the static fallback, and the social share image.
  */
-export const BOOK_COVER = { src: "/images/cover-placeholder.jpg", width: 800, height: 1200 };
+export const BOOK_COVER = { src: "/images/book-cover.jpg", width: 962, height: 1542 };
 
 // In-page anchors; the funnel is currently the whole site.
 export const funnelNav: NavItem[] = [
@@ -29,7 +29,8 @@ export const funnelNav: NavItem[] = [
 ];
 
 // The book's Introduction, verbatim (typography only: "Sourcecode" → "Source
-// Code", closing quote added).
+// Code", closing quote added). The two "why" sentences are lifted out into the
+// author's note below rather than repeated here.
 export const introduction = {
   heading: "This book is not for everybody.",
   paragraphs: [
@@ -39,11 +40,26 @@ export const introduction = {
     "What voice?",
     "Well, it comes in many tones—high, low, angry, sad, positive, and motivating.",
     "The voice that tells you that you are made for more and that you are ready to take action on that “more.” The voice that pulls you toward your craft while the rest of the world pulls you toward distraction. It is the same voice that often makes you feel strangely out of place in mundane, shallow conversations because part of you knows you were made for more. It is the voice that beckons you to continue to work on your personal growth, progress, and self-actualization.",
-    "This book is for me.",
-    "The principles in this book are the very tenets I had to apply to see it through to completion successfully. This book is for entrepreneurs, creators, and ambitious people trying to build the discipline and consistency necessary to expand their businesses and ultimately create something meaningful beyond mere survival.",
+    "This book is for entrepreneurs, creators, and ambitious people trying to build the discipline and consistency necessary to expand their businesses and ultimately create something meaningful beyond mere survival.",
     "Lastly, this is for the person who values potential and freedom.",
     "If you cannot focus on your goals or purpose for extended periods, you will never fully reach your potential. Focus and discipline create freedom by freeing you from procrastination, distraction, and the habits that keep you stuck. This creates freedom from an ordinary life and gives you the freedom to pursue the dreams you once thought were unattainable.",
   ],
+};
+
+// Author's note: the Introduction's own "why", verbatim.
+export const authorNote = {
+  heading: "Why I Wrote This Book",
+  lines: [
+    "This book is for me.",
+    "The principles in this book are the very tenets I had to apply to see it through to completion successfully.",
+  ],
+  signature: "Francisco Nunez",
+  photo: {
+    src: "/images/francisco-holding-book.jpg",
+    width: 800,
+    height: 1200,
+    alt: "Francisco Nunez holding a copy of The Source Code to Focus",
+  },
 };
 
 // Verbatim passages from Chapter 2. Each inner array is a run of consecutive

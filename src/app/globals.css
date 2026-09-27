@@ -13,9 +13,10 @@
   --color-cyan: #4fc8f0;
   --color-navy: #1e3a8c;
 
-  /* The laser — and only the laser — is red/amber, like the cover's light source. */
-  --color-laser: #e3241b;
-  --color-laser-amber: #ff8a3d;
+  /* The laser — and only the laser — is red/amber, sampled from the cover:
+     laser line #BB1C00 (brightened for screen), light source gold #EDD03F→#DFB419. */
+  --color-laser: #c41e00;
+  --color-laser-amber: #edc53f;
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
@@ -62,13 +63,13 @@
 }
 
 /* Luminous laser-lit text, used once: "Code to Focus" in the hero.
-   Warm near-white letterforms with an amber inner glow and a red outer bloom. */
+   Warm near-white letterforms with a gold inner glow and a red outer bloom. */
 @utility text-glow {
-  color: #ffe6d2;
+  color: #fff4dc;
   text-shadow:
-    0 0 14px rgb(255 138 61 / 0.7),
-    0 0 36px rgb(227 36 27 / 0.55),
-    0 0 72px rgb(227 36 27 / 0.3);
+    0 0 14px rgb(237 197 63 / 0.7),
+    0 0 36px rgb(196 30 0 / 0.55),
+    0 0 72px rgb(196 30 0 / 0.3);
 }
 
 html {

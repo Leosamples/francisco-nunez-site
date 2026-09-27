@@ -12,7 +12,7 @@ export function ChapterList() {
   const baseId = useId();
 
   return (
-    <ArticleSection id="chapters" numeral="III" label="Contents" heading="Eight chapters. One target.">
+    <ArticleSection id="chapters" numeral="IV" label="Contents" heading="Eight chapters. One target.">
       <ol className="border-t border-ink-line">
         {chapters.map((ch, i) => {
           const isOpen = open === i;

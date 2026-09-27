@@ -6,7 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 /** Editions as a price list with dot leaders, not cards. */
 export function FormatCards() {
   return (
-    <ArticleSection id="formats" numeral="VI" label="Editions" heading="Pick your format.">
+    <ArticleSection id="formats" numeral="VII" label="Editions" heading="Pick your format.">
       <ul className="border-t border-ink-line">
         {formats.map((f, i) => (
           <li key={f.name} className="border-b border-ink-line">

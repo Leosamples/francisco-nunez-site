@@ -8,7 +8,7 @@ const isBeat = (p: string) => p.length < 50;
 
 export function Excerpt() {
   return (
-    <ArticleSection id="excerpt" numeral="II" label="Excerpt" kicker={excerpt.source} heading={withLaser(excerpt.heading)}>
+    <ArticleSection id="excerpt" numeral="III" label="Excerpt" kicker={excerpt.source} heading={withLaser(excerpt.heading)}>
       <Prose>
         {excerpt.runs.map((run, r) => (
           <div key={r} className="space-y-6">

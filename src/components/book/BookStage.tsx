@@ -64,12 +64,17 @@ export function BookStage() {
           alt={`${book.title} by ${book.author}`}
           priority
           sizes="(min-width: 1024px) 22rem, 60vw"
-          className="w-[62%] rounded-[3px] shadow-[18px_24px_60px_-12px_rgba(0,0,0,0.8)] [transform:rotateY(-22deg)_rotateX(3deg)]"
+          className="w-[58%] rounded-[3px] shadow-[18px_24px_60px_-12px_rgba(0,0,0,0.8)] [transform:rotateY(-22deg)_rotateX(3deg)]"
         />
       </div>
       {load3D && (
         <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>
-          <BookCanvas coverSrc={BOOK_COVER.src} active={visible} onReady={onReady} />
+          <BookCanvas
+            coverSrc={BOOK_COVER.src}
+            aspect={BOOK_COVER.width / BOOK_COVER.height}
+            active={visible}
+            onReady={onReady}
+          />
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import { funnelNav } from "@/content/book";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { AboutAuthor } from "./AboutAuthor";
+import { AuthorNote } from "./AuthorNote";
 import { ChapterList } from "./ChapterList";
 import { ChapterMarquee } from "./ChapterMarquee";
 import { EmailCapture } from "./EmailCapture";
@@ -25,6 +26,7 @@ export function BookFunnel() {
         <Hero />
         <ChapterMarquee />
         <Introduction />
+        <AuthorNote />
         <PullQuote />
         <Excerpt />
         <ChapterList />

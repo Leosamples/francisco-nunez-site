@@ -4,8 +4,7 @@ import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 
-// 6×9 trim, ~140 pages.
-const W = 2;
+// Height is fixed; width follows the cover art's proportions. ~140 pages deep.
 const H = 3;
 const D = 0.26;
 
@@ -33,7 +32,17 @@ function usePageEdgeTexture() {
 
 type Input = { current: { x: number; y: number } };
 
-function Book({ coverSrc, input, onReady }: { coverSrc: string; input: Input; onReady: () => void }) {
+function Book({
+  coverSrc,
+  aspect,
+  input,
+  onReady,
+}: {
+  coverSrc: string;
+  aspect: number;
+  input: Input;
+  onReady: () => void;
+}) {
   const mesh = useRef<THREE.Mesh>(null);
   const cover = useLoader(THREE.TextureLoader, coverSrc);
   const pages = usePageEdgeTexture();
@@ -43,7 +52,8 @@ function Book({ coverSrc, input, onReady }: { coverSrc: string; input: Input; on
     const coverMap = cover.clone();
     coverMap.colorSpace = THREE.SRGBColorSpace;
     coverMap.anisotropy = 4;
-    const board = new THREE.MeshStandardMaterial({ color: "#0b1020", roughness: 0.55, metalness: 0.1 });
+    // matches the cover's black
+    const board = new THREE.MeshStandardMaterial({ color: "#131313", roughness: 0.55, metalness: 0.1 });
     const paper = new THREE.MeshStandardMaterial({ map: pages, roughness: 0.9 });
     const front = new THREE.MeshStandardMaterial({ map: coverMap, roughness: 0.42, metalness: 0.05 });
     // BoxGeometry face order: +x, -x, +y, -y, +z (front), -z (back)
@@ -65,17 +75,20 @@ function Book({ coverSrc, input, onReady }: { coverSrc: string; input: Input; on
 
   return (
     <mesh ref={mesh} material={materials}>
-      <boxGeometry args={[W, H, D]} />
+      <boxGeometry args={[H * aspect, H, D]} />
     </mesh>
   );
 }
 
 export default function BookCanvas({
   coverSrc,
+  aspect,
   active,
   onReady,
 }: {
   coverSrc: string;
+  /** cover width / height */
+  aspect: number;
   /** false pauses the render loop (off-screen). */
   active: boolean;
   onReady: () => void;
@@ -113,11 +126,11 @@ export default function BookCanvas({
     >
       <ambientLight intensity={0.9} />
       <directionalLight position={[-3, 4, 5]} intensity={2.2} />
-      {/* cyan rim, echoing the beam */}
-      <pointLight position={[3.2, -1.5, 1.5]} intensity={14} color="#4fc8f0" />
+      {/* warm rim, echoing the cover's light source and the laser */}
+      <pointLight position={[3.2, -1.5, 1.5]} intensity={12} color="#edc53f" />
       <pointLight position={[-3, 1, -2]} intensity={6} color="#1e3a8c" />
       <Suspense fallback={null}>
-        <Book coverSrc={coverSrc} input={input} onReady={onReady} />
+        <Book coverSrc={coverSrc} aspect={aspect} input={input} onReady={onReady} />
       </Suspense>
     </Canvas>
   );

@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 
 export function AboutAuthor() {
   return (
-    <ArticleSection id="author" numeral="V" label="The author" heading={author.name}>
+    <ArticleSection id="author" numeral="VI" label="The author" heading={author.name}>
       <Prose>
         <Reveal>
           <Image

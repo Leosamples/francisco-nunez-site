@@ -9,7 +9,7 @@ export function LaserWord({ children }: { children: React.ReactNode }) {
       {children}
       <span aria-hidden className="pointer-events-none absolute inset-x-0 -bottom-1 h-2 overflow-hidden">
         <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-laser/60 motion-reduce:bg-laser" />
-        <span className="animate-laser-sweep absolute top-1/2 left-0 h-[3px] w-[45%] -translate-y-1/2 bg-[linear-gradient(90deg,transparent,var(--color-laser)_55%,var(--color-laser-amber)_85%,#ffd2a8)] shadow-[0_0_8px_rgba(255,138,61,0.9)] motion-reduce:hidden" />
+        <span className="animate-laser-sweep absolute top-1/2 left-0 h-[3px] w-[45%] -translate-y-1/2 bg-[linear-gradient(90deg,transparent,var(--color-laser)_55%,var(--color-laser-amber)_85%,#fff1c2)] shadow-[0_0_8px_rgba(237,197,63,0.9)] motion-reduce:hidden" />
       </span>
     </span>
   );

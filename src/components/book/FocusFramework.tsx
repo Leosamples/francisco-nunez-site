@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 export function FocusFramework() {
   const { heading, intro, disciplines } = focusFramework;
   return (
-    <ArticleSection id="bonus" numeral="IV" label="Included bonus" heading={heading}>
+    <ArticleSection id="bonus" numeral="V" label="Included bonus" heading={heading}>
       <Prose>
         <Reveal>
           <p>{intro}</p>
