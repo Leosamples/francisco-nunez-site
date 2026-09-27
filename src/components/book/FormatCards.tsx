@@ -1,5 +1,5 @@
 import { formats } from "@/content/book";
-import { ButtonLink } from "@/components/site/Button";
+import { ButtonLink, buttonClass } from "@/components/site/Button";
 import { Container } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -28,9 +28,13 @@ export function FormatCards() {
                     Buy the {f.name.toLowerCase()}
                   </ButtonLink>
                 ) : (
-                  <ButtonLink href="#updates" variant="ghost" className="mt-8 w-full">
+                  // Visual placeholder until distributor links are final.
+                  <span
+                    aria-disabled="true"
+                    className={`${buttonClass("ghost")} mt-8 w-full cursor-default hover:border-ink-line hover:text-paper`}
+                  >
                     Coming soon — get notified
-                  </ButtonLink>
+                  </span>
                 )}
               </Reveal>
             </li>

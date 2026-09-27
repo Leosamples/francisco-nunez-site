@@ -135,7 +135,7 @@ export const author = {
   // Condensed from the book's About the Author page.
   bio: [
     "Francisco Nunez is a high-performance coach, keynote speaker, and thought partner for individuals ready to unlock discipline, alignment, and purpose. With more than 15 years of experience in technology, leadership, and personal development, he combines practical strategy with a deep understanding of human growth.",
-    "He serves as a Senior Solutions Engineer at Microsoft, and has spent over a decade and a half studying personal development and coaching — across sales leadership, direct sales, nonprofit mentoring, and small-business development. Born in the Dominican Republic and raised in Prince George’s County, Maryland, he earned his degree in computer science and mathematics at Morehouse College.",
+    "He serves as a Senior Solutions Engineer at a major technology company, and has spent over a decade and a half studying personal development and coaching — across sales leadership, direct sales, nonprofit mentoring, and small-business development. Born in the Dominican Republic and raised in Prince George’s County, Maryland, he earned his degree in computer science and mathematics at Morehouse College.",
     "His mission is simple: to help people become more intentional, lead with clarity, and live up to their highest potential.",
   ],
 };
@@ -144,7 +144,7 @@ export type Format = {
   name: string;
   price: string;
   note: string;
-  /** Distributor link. `null` until the URL is final — the card then points to launch updates. */
+  /** Distributor link. `null` until the URL is final — the card shows an inert "Coming soon" label. */
   href: string | null;
 };
 
