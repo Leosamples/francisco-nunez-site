@@ -5,16 +5,17 @@ import { AboutAuthor } from "./AboutAuthor";
 import { ChapterList } from "./ChapterList";
 import { ChapterMarquee } from "./ChapterMarquee";
 import { EmailCapture } from "./EmailCapture";
+import { Excerpt } from "./Excerpt";
 import { FocusFramework } from "./FocusFramework";
 import { FormatCards } from "./FormatCards";
 import { Hero } from "./Hero";
-import { Hook } from "./Hook";
+import { Introduction } from "./Introduction";
 import { LaserShow } from "./LaserShow";
 import { PullQuote } from "./PullQuote";
 
 /**
- * The complete book funnel. Route-agnostic: mount it from any page file
- * (currently app/page.tsx; later app/book/page.tsx).
+ * The complete book funnel, laid out as an editorial feature. Route-agnostic:
+ * mount it from any page file (currently app/page.tsx; later app/book/page.tsx).
  */
 export function BookFunnel() {
   return (
@@ -22,11 +23,12 @@ export function BookFunnel() {
       <SiteNav links={funnelNav} cta={{ label: "Get The Book", href: "#formats" }} />
       <main>
         <Hero />
-        <Hook />
+        <ChapterMarquee />
+        <Introduction />
         <PullQuote />
+        <Excerpt />
         <ChapterList />
         <FocusFramework />
-        <ChapterMarquee />
         <AboutAuthor />
         <FormatCards />
         <EmailCapture />

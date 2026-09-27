@@ -17,7 +17,8 @@
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 
   --animate-drift: drift 18s ease-in-out infinite alternate;
-  --animate-marquee: marquee 45s linear infinite;
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-laser-sweep: laser-sweep 2.4s linear infinite;
 
   @keyframes drift {
     from {
@@ -25,6 +26,23 @@
     }
     to {
       transform: translate3d(var(--dx, 12px), var(--dy, -16px), 0);
+    }
+  }
+
+  /* A bright streak runs under a word, then rests: ~0.4s of travel per 2.4s. */
+  @keyframes laser-sweep {
+    0% {
+      transform: translateX(-100%);
+      opacity: 1;
+    }
+    16% {
+      transform: translateX(260%);
+      opacity: 1;
+    }
+    17%,
+    100% {
+      transform: translateX(260%);
+      opacity: 0;
     }
   }
 

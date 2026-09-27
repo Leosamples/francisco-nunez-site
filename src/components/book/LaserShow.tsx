@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
  *
  * One reused element, animated with the Web Animations API on transform and
  * opacity only (GPU-composited, no layout). Pauses while the tab is hidden.
- * Full intensity while the hero is on screen, faint elsewhere. Screen
+ * Full intensity while the hero is on screen, a faint accent elsewhere. Screen
  * blending keeps shots from obscuring text.
  *
  * Reduced motion: no shots — a single static, faint beam instead.
@@ -111,7 +111,7 @@ export function LaserShow({ heroId }: { heroId: string }) {
     <div
       aria-hidden
       className="pointer-events-none fixed inset-0 z-40 overflow-hidden mix-blend-screen motion-safe:transition-opacity motion-safe:duration-700"
-      style={{ opacity: heroVisible ? 1 : 0.25 }}
+      style={{ opacity: heroVisible ? 1 : 0.15 }}
     >
       {/* Reduced motion: one static, faint beam where the first shot would be. */}
       <div className="absolute left-1/2 top-[52%] hidden w-[170vmax] -translate-x-1/2 -translate-y-1/2 -rotate-[22deg] opacity-40 motion-reduce:block">

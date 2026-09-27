@@ -22,20 +22,56 @@ export const BOOK_COVER = { src: "/images/cover-placeholder.jpg", width: 800, he
 
 // In-page anchors; the funnel is currently the whole site.
 export const funnelNav: NavItem[] = [
+  { label: "Excerpt", href: "#excerpt" },
   { label: "Chapters", href: "#chapters" },
   { label: "Bonus", href: "#bonus" },
   { label: "Author", href: "#author" },
 ];
 
-export const hook = {
-  eyebrow: "Introduction",
+// The book's Introduction, verbatim (typography only: "Sourcecode" → "Source
+// Code", closing quote added).
+export const introduction = {
   heading: "This book is not for everybody.",
-  // Excerpt from the Introduction.
   paragraphs: [
-    "Everybody can read this book, but it isn’t necessarily for everybody.",
+    "Who is this book for? I’d love to give you a cliché response and say, “Oh yes, this book is for everyone. Anyone who can read should pick it up. If you have a pulse, have at it!”",
+    "But the truth is, this book is NOT for everybody. Let me repeat. Everybody can read this book, but it isn’t necessarily for everybody.",
     "The Source Code to Focus is systematically engineered for those who hear the voice.",
-    "The voice that tells you that you are made for more and that you are ready to take action on that “more.” The voice that pulls you toward your craft while the rest of the world pulls you toward distraction.",
-    "This book is for entrepreneurs, creators, and ambitious people trying to build the discipline and consistency necessary to expand their businesses and ultimately create something meaningful beyond mere survival.",
+    "What voice?",
+    "Well, it comes in many tones—high, low, angry, sad, positive, and motivating.",
+    "The voice that tells you that you are made for more and that you are ready to take action on that “more.” The voice that pulls you toward your craft while the rest of the world pulls you toward distraction. It is the same voice that often makes you feel strangely out of place in mundane, shallow conversations because part of you knows you were made for more. It is the voice that beckons you to continue to work on your personal growth, progress, and self-actualization.",
+    "This book is for me.",
+    "The principles in this book are the very tenets I had to apply to see it through to completion successfully. This book is for entrepreneurs, creators, and ambitious people trying to build the discipline and consistency necessary to expand their businesses and ultimately create something meaningful beyond mere survival.",
+    "Lastly, this is for the person who values potential and freedom.",
+    "If you cannot focus on your goals or purpose for extended periods, you will never fully reach your potential. Focus and discipline create freedom by freeing you from procrastination, distraction, and the habits that keep you stuck. This creates freedom from an ordinary life and gives you the freedom to pursue the dreams you once thought were unattainable.",
+  ],
+};
+
+// Verbatim passages from Chapter 2. Each inner array is a run of consecutive
+// paragraphs; a break between runs marks skipped text.
+export const excerpt = {
+  source: "From Chapter 2",
+  heading: "The Laser in a Room Full of Flashlights",
+  runs: [
+    [
+      "So what does it actually mean to be a laser in a room full of flashlights?",
+      "Let’s take a second to break this down.",
+      "What is a flashlight?",
+      "A flashlight is a portable electric lamp, usually battery-powered, designed to illuminate dark spaces. It’s useful for things like camping, navigating dark places, or temporarily seeing what’s in front of you. A flashlight can light up a reasonably large area, but it lacks focus. Its light scatters, limiting both its precision and range.",
+      "If your goal requires accuracy, power, or sustained direction, a flashlight is not enough. You cannot cut through steel with it. You cannot drill through material. You cannot use it for precise alignment.",
+      "Now compare that to a laser.",
+    ],
+    [
+      "A laser works by exciting atoms to emit light in a narrow, coherent, and highly directional beam. The result is concentrated power capable of remarkable precision over long distances.",
+    ],
+    [
+      "Most people today, whether intentionally or through unconscious habits, operate more like flashlights than lasers.",
+      "Their attention is scattered. Their energy is diluted. Their focus changes direction every few minutes.",
+      "Harsh? No. That’s reality.",
+    ],
+    [
+      "To gain control of your day, and ultimately your life, you must learn to operate like a laser. Begin taking small, intentional actions. Begin thinking long term.",
+      "A laser is focused. It illuminates a path over long distances. It guides, removes obstacles, and amplifies effectiveness.",
+    ],
   ],
 };
 
@@ -135,12 +171,16 @@ export const focusFramework = {
 export const author = {
   name: "Francisco Nunez",
   photo: { src: "/images/francisco-portrait.jpg", width: 696, height: 1400 },
-  // Condensed from the book's About the Author page.
+  // The book's About the Author page, verbatim except the employer, which is
+  // not named on the site.
   bio: [
-    "Francisco Nunez is a high-performance coach, keynote speaker, and thought partner for individuals ready to unlock discipline, alignment, and purpose. With more than 15 years of experience in technology, leadership, and personal development, he combines practical strategy with a deep understanding of human growth.",
-    "He serves as a Senior Solutions Engineer at a major technology company, and has spent over a decade and a half studying personal development and coaching — across sales leadership, direct sales, nonprofit mentoring, and small-business development. Born in the Dominican Republic and raised in Prince George’s County, Maryland, he earned his degree in computer science and mathematics at Morehouse College.",
-    "His mission is simple: to help people become more intentional, lead with clarity, and live up to their highest potential.",
+    "Francisco Nunez is a high-performance coach, keynote speaker, and thought partner for individuals ready to unlock discipline, alignment, and purpose. With more than 15 years of experience in technology, leadership, and personal development, he combines practical strategy with a deep understanding of human growth to help people move with clarity and intention.",
+    "Professionally, Francisco serves as a Senior Solutions Engineer at a major technology company, where he works with complex technologies and enterprise solutions. Outside the tech world, he has spent over a decade and a half studying personal development and coaching, with experience spanning sales leadership, direct sales, nonprofit mentoring, and small-business development.",
+    "Francisco attended Morehouse College, where he earned a bachelor’s degree in computer science and mathematics. Born in the Dominican Republic and raised in Prince George’s County, Maryland, his journey has been shaped by diverse experiences, meaningful relationships, and a commitment to lifelong growth.",
+    "With a dual mastery in technology and human performance, Francisco bridges the worlds of innovation and intention, helping individuals, teams, and entrepreneurs unlock their next level. His coaching spans from habit architecture design to identity work to long-term goal execution, effectively guiding high performers to design lives that actually match their vision.",
+    "Whether he’s building intelligent solutions in the tech space or guiding clients through personal transformation, Francisco’s work is grounded in discipline, purpose, and service. His mission is simple: to help people become more intentional, lead with clarity, and live up to their highest potential.",
   ],
+
 };
 
 export type Format = {

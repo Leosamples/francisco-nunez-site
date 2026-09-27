@@ -3,7 +3,7 @@ import Link from "next/link";
 type Variant = "primary" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[3px] font-sans font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   primary: "bg-cyan text-ink hover:bg-paper",
