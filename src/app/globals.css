@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/*
+ * Brand tokens — pulled from the FN flame logo.
+ * The brand is dark-ground only; there is no light theme.
+ */
+@theme {
+  --color-ink: #05070e;
+  --color-ink-raised: #0b1020;
+  --color-ink-line: #1a2138;
+  --color-paper: #f3f6fb;
+  --color-slate: #8b93aa;
+  --color-cyan: #4fc8f0;
+  --color-navy: #1e3a8c;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-beam-pulse: beam-pulse 4.5s ease-in-out infinite;
+
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(var(--dx, 12px), var(--dy, -16px), 0);
+    }
+  }
+
+  @keyframes beam-pulse {
+    0%,
+    100% {
+      opacity: 0.85;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@utility bg-flame {
+  background-image: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-navy) 100%);
+}
+
+@utility text-flame {
+  background-image: linear-gradient(120deg, var(--color-paper) 30%, var(--color-cyan) 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-cyan) 40%, transparent);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
