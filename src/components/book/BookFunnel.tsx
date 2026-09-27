@@ -8,6 +8,7 @@ import { FocusFramework } from "./FocusFramework";
 import { FormatCards } from "./FormatCards";
 import { Hero } from "./Hero";
 import { Hook } from "./Hook";
+import { LaserBeam } from "./LaserBeam";
 import { PullQuote } from "./PullQuote";
 
 /**
@@ -29,6 +30,7 @@ export function BookFunnel() {
         <EmailCapture />
       </main>
       <SiteFooter links={funnelNav} />
+      <LaserBeam heroId="hero" />
     </>
   );
 }

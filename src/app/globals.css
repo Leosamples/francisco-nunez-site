@@ -18,6 +18,7 @@
 
   --animate-drift: drift 18s ease-in-out infinite alternate;
   --animate-beam-pulse: beam-pulse 4.5s ease-in-out infinite;
+  --animate-beam-fire: beam-fire 3.6s cubic-bezier(0.45, 0, 0.2, 1) infinite;
 
   @keyframes drift {
     from {
@@ -25,6 +26,26 @@
     }
     to {
       transform: translate3d(var(--dx, 12px), var(--dy, -16px), 0);
+    }
+  }
+
+  /* A bright pulse shoots along the full beam, then rests before the next shot. */
+  @keyframes beam-fire {
+    0% {
+      transform: translateX(-14vmax);
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    55% {
+      transform: translateX(220vmax);
+      opacity: 1;
+    }
+    56%,
+    100% {
+      transform: translateX(220vmax);
+      opacity: 0;
     }
   }
 

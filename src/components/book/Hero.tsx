@@ -3,13 +3,11 @@ import { ButtonLink } from "@/components/site/Button";
 import { Container } from "@/components/site/Container";
 import { BookStage } from "./BookStage";
 import { FlashlightField } from "./FlashlightField";
-import { LaserBeam } from "./LaserBeam";
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-svh items-center overflow-hidden bg-[radial-gradient(ellipse_at_70%_40%,var(--color-ink-raised),var(--color-ink)_70%)] pt-24 pb-16">
+    <section id="hero" className="relative flex min-h-svh items-center overflow-hidden bg-[radial-gradient(ellipse_at_70%_40%,var(--color-ink-raised),var(--color-ink)_70%)] pt-24 pb-16">
       <FlashlightField />
-      <LaserBeam />
       <Container className="relative grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
         <div className="max-w-xl space-y-7">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan">The new book by {book.author}</p>
