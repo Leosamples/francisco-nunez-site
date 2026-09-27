@@ -32,7 +32,7 @@ export function ChapterList() {
                   >
                     <span
                       className={`w-6 shrink-0 font-sans text-xs font-semibold tabular-nums transition-colors ${
-                        isOpen ? "text-cyan" : "text-slate"
+                        isOpen ? "text-amber" : "text-muted"
                       }`}
                     >
                       {String(ch.number).padStart(2, "0")}
@@ -47,7 +47,7 @@ export function ChapterList() {
                     <span
                       aria-hidden
                       className={`font-sans text-xl font-light transition-transform duration-300 ${
-                        isOpen ? "rotate-45 text-cyan" : "text-slate"
+                        isOpen ? "rotate-45 text-amber" : "text-muted"
                       }`}
                     >
                       +

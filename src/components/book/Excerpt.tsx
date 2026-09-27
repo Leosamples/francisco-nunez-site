@@ -14,7 +14,7 @@ export function Excerpt() {
           <div key={r} className="space-y-6">
             {r > 0 && (
               // marks skipped text between passages
-              <p aria-label="Text omitted" className="py-2 text-center font-sans text-slate tracking-[0.6em]">
+              <p aria-label="Text omitted" className="py-2 text-center font-sans text-muted tracking-[0.6em]">
                 · · ·
               </p>
             )}

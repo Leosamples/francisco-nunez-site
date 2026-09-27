@@ -6,8 +6,8 @@ const base =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[3px] font-sans font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-cyan text-ink hover:bg-paper",
-  ghost: "border border-paper/20 text-paper hover:border-paper/60",
+  primary: "bg-red text-paper hover:bg-amber hover:text-ink",
+  ghost: "border border-paper/20 text-paper hover:border-amber",
 };
 
 const sizes = {

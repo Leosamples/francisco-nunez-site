@@ -12,12 +12,12 @@ export function ChapterMarquee() {
       {chapters.map((ch) => (
         <li key={ch.number} className="flex items-center">
           <span className="flex items-baseline gap-4 px-8 whitespace-nowrap sm:px-10">
-            <span className="font-sans text-xs font-semibold tracking-[0.2em] text-slate tabular-nums">
+            <span className="font-sans text-xs font-semibold tracking-[0.2em] text-muted tabular-nums">
               {String(ch.number).padStart(2, "0")}
             </span>
             <span className="font-serif text-3xl font-light text-paper/90 italic sm:text-5xl">{ch.title}</span>
           </span>
-          <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-cyan/70" />
+          <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-red" />
         </li>
       ))}
     </ul>

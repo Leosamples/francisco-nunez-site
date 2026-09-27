@@ -117,19 +117,19 @@ export function LaserShow({ heroId }: { heroId: string }) {
     >
       {/* Reduced motion: one static, faint beam where the first shot would be. */}
       <div className="absolute left-1/2 top-[52%] hidden w-[170vmax] -translate-x-1/2 -translate-y-1/2 -rotate-[22deg] opacity-40 motion-reduce:block">
-        <span className="block h-px bg-[linear-gradient(90deg,transparent,var(--color-laser)_30%,var(--color-laser)_70%,transparent)]" />
+        <span className="block h-px bg-[linear-gradient(90deg,transparent,var(--color-red)_30%,var(--color-red)_70%,transparent)]" />
       </div>
 
       <div ref={rig} className="absolute left-1/2 top-1/2 w-[170vmax] motion-reduce:hidden">
         {/* the beam: grows from its start edge, then vanishes */}
         <div ref={beam} className="relative h-px origin-left opacity-0">
-          <span className="absolute inset-x-0 -top-[5px] h-[11px] bg-[linear-gradient(90deg,rgba(237,197,63,0.12),rgba(237,197,63,0.7))] blur-[5px]" />
-          <span className="absolute inset-x-0 -top-px h-[2px] bg-[linear-gradient(90deg,rgba(196,30,0,0.45),var(--color-laser)_60%,#e8401a)]" />
+          <span className="absolute inset-x-0 -top-[5px] h-[11px] bg-[linear-gradient(90deg,rgba(245,166,35,0.12),rgba(245,166,35,0.7))] blur-[5px]" />
+          <span className="absolute inset-x-0 -top-px h-[2px] bg-[linear-gradient(90deg,rgba(196,30,30,0.45),var(--color-red)_60%,#e0332b)]" />
         </div>
         {/* the bright head leading the shot */}
         <div
           ref={head}
-          className="absolute -top-[8px] left-0 h-[17px] w-[10vmax] opacity-0 bg-[linear-gradient(90deg,transparent,rgba(196,30,0,0.9)_55%,var(--color-laser-amber)_85%,#fff1c2)] blur-[3px]"
+          className="absolute -top-[8px] left-0 h-[17px] w-[10vmax] opacity-0 bg-[linear-gradient(90deg,transparent,rgba(196,30,30,0.9)_55%,var(--color-amber)_85%,#ffdf9e)] blur-[3px]"
         />
       </div>
     </div>

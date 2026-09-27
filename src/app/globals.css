@@ -1,22 +1,23 @@
 @import "tailwindcss";
 
 /*
- * Brand tokens — pulled from the FN flame logo.
- * The brand is dark-ground only; there is no light theme.
+ * Brand tokens — pulled from the book cover: black field, cream lettering,
+ * the red laser line, and the amber/gold light source. No blue anywhere.
+ * (The FN logo image keeps its own colors.) Dark ground only.
  */
 @theme {
-  --color-ink: #05070e;
-  --color-ink-raised: #0b1020;
-  --color-ink-line: #1a2138;
-  --color-paper: #f3f6fb;
-  --color-slate: #8b93aa;
-  --color-cyan: #4fc8f0;
-  --color-navy: #1e3a8c;
+  --color-ink: #000000; /* page background */
+  --color-ink-raised: #111111; /* the cover's black; raised surfaces */
+  --color-ink-line: #2a2420; /* hairlines, borders */
+  --color-paper: #f5f1ea; /* cream text, after the cover's title lettering */
+  --color-muted: #a39787; /* secondary text, labels */
 
-  /* The laser — and only the laser — is red/amber, sampled from the cover:
-     laser line #BB1C00 (brightened for screen), light source gold #EDD03F→#DFB419. */
-  --color-laser: #c41e00;
-  --color-laser-amber: #edc53f;
+  /* primary accent: the laser line — CTAs, links, the word "laser", drop caps */
+  --color-red: #c41e1e;
+  --color-red-deep: #8b1010;
+  /* secondary accent: the light source — glows, hover states, small highlights */
+  --color-amber: #f5a623;
+  --color-amber-deep: #d4900a;
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
@@ -63,13 +64,15 @@
 }
 
 /* Luminous laser-lit text, used once: "Code to Focus" in the hero.
-   Warm near-white letterforms with a gold inner glow and a red outer bloom. */
+   Cream letterforms; the glow runs from a red core out to an amber halo,
+   like the cover's light source. */
 @utility text-glow {
-  color: #fff4dc;
+  color: var(--color-paper);
   text-shadow:
-    0 0 14px rgb(237 197 63 / 0.7),
-    0 0 36px rgb(196 30 0 / 0.55),
-    0 0 72px rgb(196 30 0 / 0.3);
+    0 0 6px rgb(196 30 30 / 0.9),
+    0 0 18px rgb(196 30 30 / 0.65),
+    0 0 40px rgb(245 166 35 / 0.45),
+    0 0 84px rgb(212 144 10 / 0.3);
 }
 
 html {
@@ -84,12 +87,12 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-cyan) 40%, transparent);
+  background: color-mix(in oklab, var(--color-red) 55%, transparent);
   color: var(--color-paper);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-cyan);
+  outline: 2px solid var(--color-amber);
   outline-offset: 3px;
 }
 

@@ -127,8 +127,8 @@ export default function BookCanvas({
       <ambientLight intensity={0.9} />
       <directionalLight position={[-3, 4, 5]} intensity={2.2} />
       {/* warm rim, echoing the cover's light source and the laser */}
-      <pointLight position={[3.2, -1.5, 1.5]} intensity={12} color="#edc53f" />
-      <pointLight position={[-3, 1, -2]} intensity={6} color="#1e3a8c" />
+      <pointLight position={[3.2, -1.5, 1.5]} intensity={12} color="#f5a623" />
+      <pointLight position={[-3, 1, -2]} intensity={6} color="#8b1010" />
       <Suspense fallback={null}>
         <Book coverSrc={coverSrc} aspect={aspect} input={input} onReady={onReady} />
       </Suspense>

@@ -1,7 +1,7 @@
 /** Small sans-serif label: section markers, kickers, metadata. */
 export function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={`font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-slate ${className}`}>
+    <p className={`font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-muted ${className}`}>
       {children}
     </p>
   );

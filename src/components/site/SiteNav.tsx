@@ -27,7 +27,7 @@ export function SiteNav({ links = [], cta }: { links?: NavItem[]; cta?: NavItem 
         <div className="flex items-center gap-7">
           {links.length > 0 && (
             <nav aria-label="Primary" className="hidden md:block">
-              <ul className="flex gap-7 text-sm font-semibold text-slate">
+              <ul className="flex gap-7 text-sm font-semibold text-muted">
                 {links.map((l) => (
                   <li key={l.href}>
                     <a href={l.href} className="transition hover:text-paper">

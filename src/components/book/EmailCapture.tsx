@@ -22,7 +22,7 @@ export function EmailCapture() {
             type="email"
             disabled
             placeholder="you@example.com"
-            className="min-w-0 flex-1 cursor-default rounded-[3px] border border-ink-line bg-transparent px-4 py-3 font-sans text-paper placeholder:text-slate/70"
+            className="min-w-0 flex-1 cursor-default rounded-[3px] border border-ink-line bg-transparent px-4 py-3 font-sans text-paper placeholder:text-muted/70"
           />
           <span aria-disabled="true" className={`${buttonClass("primary", "md")} cursor-default`}>
             Notify me

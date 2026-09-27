@@ -8,14 +8,14 @@ export function SiteFooter({ links = [] }: { links?: NavItem[] }) {
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-3">
           <Logo size="footer" />
-          <p className="text-sm text-slate">{site.tagline}</p>
+          <p className="text-sm text-muted">{site.tagline}</p>
         </div>
         {links.length > 0 && (
           <nav aria-label="Footer">
-            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
               {links.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="transition hover:text-cyan">
+                  <a href={l.href} className="transition hover:text-amber">
                     {l.label}
                   </a>
                 </li>
@@ -25,7 +25,7 @@ export function SiteFooter({ links = [] }: { links?: NavItem[] }) {
         )}
       </Container>
       <Container className="border-t border-ink-line py-6">
-        <p className="text-xs text-slate">
+        <p className="text-xs text-muted">
           © {new Date().getFullYear()} {site.name}. All rights reserved.
         </p>
       </Container>

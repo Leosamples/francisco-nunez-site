@@ -14,7 +14,7 @@ export function FocusFramework() {
           {disciplines.map((d, i) => (
             <Reveal key={d.title}>
               <li className="grid grid-cols-[2.25rem_1fr]">
-                <span className="pt-1.5 font-sans text-xs font-semibold text-cyan tabular-nums">
+                <span className="pt-1.5 font-sans text-xs font-semibold text-amber tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p>

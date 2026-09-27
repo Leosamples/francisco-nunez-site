@@ -17,7 +17,7 @@ export function Hero() {
       <Container className="relative grid items-center gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
         <div className="max-w-2xl">
           <Eyebrow className="flex items-center gap-3">
-            <span aria-hidden className="h-px w-8 bg-cyan" />A book preview
+            <span aria-hidden className="h-px w-8 bg-red" />A book preview
           </Eyebrow>
           <h1 className="mt-8 font-serif text-6xl leading-[0.95] font-medium tracking-[-0.025em] sm:text-7xl lg:text-[6.25rem]">
             <span className="block text-paper">{book.titleLead}</span>
@@ -26,7 +26,7 @@ export function Hero() {
           <p className="mt-8 max-w-lg font-serif text-2xl leading-snug font-light text-paper/80 italic sm:text-[1.75rem]">
             {withLaser(dek)}
           </p>
-          <p className="mt-8 font-sans text-sm text-slate">
+          <p className="mt-8 font-sans text-sm text-muted">
             By <span className="text-paper">{book.author}</span>
           </p>
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -35,7 +35,7 @@ export function Hero() {
             </ButtonLink>
             <a
               href="#excerpt"
-              className="font-sans text-sm font-semibold text-paper underline decoration-paper/30 underline-offset-8 transition hover:decoration-cyan"
+              className="font-sans text-sm font-semibold text-paper underline decoration-red underline-offset-8 transition hover:decoration-amber"
             >
               Read an excerpt
             </a>

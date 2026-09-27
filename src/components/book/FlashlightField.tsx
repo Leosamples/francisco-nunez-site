@@ -38,7 +38,7 @@ export function FlashlightField() {
               marginTop: -d.size / 2,
               opacity: d.opacity,
               background:
-                "radial-gradient(circle, rgba(243,246,251,0.9) 0%, rgba(139,147,170,0.35) 35%, transparent 70%)",
+                "radial-gradient(circle, rgba(245,241,234,0.9) 0%, rgba(245,166,35,0.22) 35%, transparent 70%)",
               animationDelay: `${d.delay}s`,
               "--dx": `${d.dx}px`,
               "--dy": `${d.dy}px`,

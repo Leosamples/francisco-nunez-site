@@ -13,18 +13,18 @@ export function FormatCards() {
             <Reveal delay={i * 0.06} className="py-7">
               <div className="flex items-baseline gap-4">
                 <h3 className="font-serif text-2xl text-paper sm:text-3xl">{f.name}</h3>
-                <span aria-hidden className="mb-1.5 flex-1 border-b border-dotted border-slate/40" />
+                <span aria-hidden className="mb-1.5 flex-1 border-b border-dotted border-muted/40" />
                 <p className="font-serif text-2xl text-paper tabular-nums sm:text-3xl">{f.price}</p>
               </div>
               <div className="mt-2 flex items-baseline justify-between gap-4">
-                <p className="font-serif text-lg text-slate italic">{f.note}</p>
+                <p className="font-serif text-lg text-muted italic">{f.note}</p>
                 {f.href ? (
                   <ButtonLink href={f.href} size="md">
                     Buy
                   </ButtonLink>
                 ) : (
                   // Visual placeholder until distributor links are final.
-                  <span aria-disabled="true" className="font-sans text-[0.6875rem] font-semibold tracking-[0.2em] whitespace-nowrap text-slate uppercase">
+                  <span aria-disabled="true" className="font-sans text-[0.6875rem] font-semibold tracking-[0.2em] whitespace-nowrap text-muted uppercase">
                     Coming soon
                   </span>
                 )}

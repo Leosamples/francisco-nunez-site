@@ -25,7 +25,7 @@ export function AuthorNote() {
               <p key={l}>{l}</p>
             ))}
           </blockquote>
-          <p className="mt-8 font-sans text-[0.6875rem] font-semibold tracking-[0.2em] text-slate uppercase">
+          <p className="mt-8 font-sans text-[0.6875rem] font-semibold tracking-[0.2em] text-muted uppercase">
             — {signature}
           </p>
         </Reveal>
