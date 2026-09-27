@@ -13,6 +13,8 @@ import { useEffect, useRef, useState } from "react";
  * Full intensity while the hero is on screen, a faint accent elsewhere. Screen
  * blending keeps shots from obscuring text.
  *
+ * Color: deep red core, amber glow (the cover's light source).
+ *
  * Reduced motion: no shots — a single static, faint beam instead.
  */
 
@@ -115,19 +117,19 @@ export function LaserShow({ heroId }: { heroId: string }) {
     >
       {/* Reduced motion: one static, faint beam where the first shot would be. */}
       <div className="absolute left-1/2 top-[52%] hidden w-[170vmax] -translate-x-1/2 -translate-y-1/2 -rotate-[22deg] opacity-40 motion-reduce:block">
-        <span className="block h-px bg-[linear-gradient(90deg,transparent,#bdefff_30%,#bdefff_70%,transparent)]" />
+        <span className="block h-px bg-[linear-gradient(90deg,transparent,var(--color-laser)_30%,var(--color-laser)_70%,transparent)]" />
       </div>
 
       <div ref={rig} className="absolute left-1/2 top-1/2 w-[170vmax] motion-reduce:hidden">
         {/* the beam: grows from its start edge, then vanishes */}
         <div ref={beam} className="relative h-px origin-left opacity-0">
-          <span className="absolute inset-x-0 -top-[5px] h-[11px] bg-[linear-gradient(90deg,rgba(79,200,240,0.15),rgba(79,200,240,0.75))] blur-[5px]" />
-          <span className="absolute inset-x-0 -top-px h-[2px] bg-[linear-gradient(90deg,rgba(189,239,255,0.4),#ffffff)]" />
+          <span className="absolute inset-x-0 -top-[5px] h-[11px] bg-[linear-gradient(90deg,rgba(255,138,61,0.12),rgba(255,138,61,0.7))] blur-[5px]" />
+          <span className="absolute inset-x-0 -top-px h-[2px] bg-[linear-gradient(90deg,rgba(227,36,27,0.45),var(--color-laser)_60%,#ff5a3c)]" />
         </div>
         {/* the bright head leading the shot */}
         <div
           ref={head}
-          className="absolute -top-[8px] left-0 h-[17px] w-[10vmax] opacity-0 bg-[linear-gradient(90deg,transparent,rgba(189,239,255,0.9)_70%,#ffffff)] blur-[3px]"
+          className="absolute -top-[8px] left-0 h-[17px] w-[10vmax] opacity-0 bg-[linear-gradient(90deg,transparent,rgba(227,36,27,0.9)_55%,var(--color-laser-amber)_85%,#ffd2a8)] blur-[3px]"
         />
       </div>
     </div>
