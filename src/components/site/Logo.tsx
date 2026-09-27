@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// FN flame mark + wordmark. The logo file's own navy lettering doesn't read on
-// the dark ground, so the name is set in type beside the mark.
+// FN flame mark + wordmark. The mark (/brand/fn-mark.png) and the favicon
+// (app/icon.png) are cropped from the master logo at /images/logo.png. The
+// logo's own navy lettering doesn't read on the dark ground, so the name is
+// set in type beside the mark.
 export function Logo() {
   return (
     <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Francisco Nunez — home">
