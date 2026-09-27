@@ -45,7 +45,7 @@ export function LaserBeam({ heroId }: { heroId: string }) {
           {/* core */}
           <span className="absolute inset-x-0 -top-px h-[2px] bg-[linear-gradient(90deg,transparent,#bdefff_25%,#ffffff_55%,transparent)]" />
           {/* the pulse that fires along the beam, on a loop */}
-          <span className="animate-beam-fire absolute -top-[6px] left-0 h-[13px] w-[14vmax] bg-[linear-gradient(90deg,transparent,rgba(189,239,255,0.9)_70%,#ffffff)] blur-[3px] motion-reduce:hidden" />
+          <span className="animate-beam-fire absolute -top-[7px] left-0 h-[15px] w-[18vmax] bg-[linear-gradient(90deg,transparent,rgba(189,239,255,0.95)_65%,#ffffff)] blur-[3px] motion-reduce:hidden" />
         </motion.div>
       </div>
     </div>

@@ -18,7 +18,7 @@
 
   --animate-drift: drift 18s ease-in-out infinite alternate;
   --animate-beam-pulse: beam-pulse 4.5s ease-in-out infinite;
-  --animate-beam-fire: beam-fire 3.6s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  --animate-beam-fire: beam-fire 2s linear infinite;
 
   @keyframes drift {
     from {
@@ -29,22 +29,30 @@
     }
   }
 
-  /* A bright pulse shoots along the full beam, then rests before the next shot. */
+  /*
+   * A bright pulse shoots along the on-screen stretch of the beam, then rests
+   * briefly before the next shot. The beam is 220vmax long and centered on the
+   * viewport; the stretch that's actually on screen is about ±55vw around its
+   * midpoint (110vmax) at any aspect ratio. Translate values are the pulse's
+   * left edge (pulse is 18vmax wide), so its head runs midpoint ± 70vw.
+   */
   @keyframes beam-fire {
     0% {
-      transform: translateX(-14vmax);
+      transform: translateX(calc(92vmax - 70vw));
       opacity: 0;
     }
-    8% {
+    6% {
       opacity: 1;
     }
-    55% {
-      transform: translateX(220vmax);
+    54% {
       opacity: 1;
     }
-    56%,
+    60% {
+      transform: translateX(calc(92vmax + 70vw));
+      opacity: 0;
+    }
     100% {
-      transform: translateX(220vmax);
+      transform: translateX(calc(92vmax + 70vw));
       opacity: 0;
     }
   }
