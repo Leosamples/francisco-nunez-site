@@ -13,10 +13,13 @@ import { motion, useInView, useReducedMotion } from "motion/react";
  */
 export function Reveal({
   delay = 0,
+  y = 20,
   className,
   children,
 }: {
   delay?: number;
+  /** rise distance in px */
+  y?: number;
   className?: string;
   children: React.ReactNode;
 }) {
@@ -38,7 +41,7 @@ export function Reveal({
       ref={ref}
       className={className}
       initial={false}
-      animate={hidden ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+      animate={hidden ? { opacity: 0, y } : { opacity: 1, y: 0 }}
       transition={
         hidden ? { duration: 0 } : { duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }
       }

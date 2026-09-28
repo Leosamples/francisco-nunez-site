@@ -54,11 +54,12 @@ export const authorNote = {
     "The principles in this book are the very tenets I had to apply to see it through to completion successfully.",
   ],
   signature: "Francisco Nunez",
+  // Transparent cutout (real alpha), cropped mid-thigh with a flat bottom edge.
   photo: {
-    src: "/images/francisco-holding-book.jpg",
-    width: 800,
-    height: 1200,
-    alt: "Francisco Nunez holding a copy of The Source Code to Focus",
+    src: "/images/francisco-book.png",
+    width: 1284,
+    height: 2101,
+    alt: "Francisco Nunez holding The Source Code to Focus",
   },
 };
 
