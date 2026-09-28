@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-svh items-center overflow-hidden bg-[radial-gradient(ellipse_at_70%_40%,var(--color-ink-raised),var(--color-ink)_65%)] pt-28 pb-20"
+      className="relative flex min-h-svh items-center overflow-hidden pt-28 pb-20"
     >
       <FlashlightField />
       <Container className="relative grid items-center gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-10">

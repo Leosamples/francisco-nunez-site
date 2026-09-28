@@ -50,8 +50,7 @@ export function BookStage() {
   }, []);
 
   return (
-    // z-[45] lifts the book above the page-level beam (z-40) so the beam passes behind it.
-    <div ref={wrap} className="relative z-[45] mx-auto aspect-[4/5] w-full max-w-[26rem] lg:max-w-[30rem]">
+    <div ref={wrap} className="relative mx-auto aspect-[4/5] w-full max-w-[26rem] lg:max-w-[30rem]">
       <div
         className={`absolute inset-0 grid place-items-center transition-opacity duration-700 [perspective:1400px] ${
           ready ? "opacity-0" : "opacity-100"

@@ -19,7 +19,7 @@ export function SiteNav({ links = [], cta }: { links?: NavItem[]; cta?: NavItem 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "border-b border-ink-line bg-ink/80 backdrop-blur-md" : "border-b border-transparent"
+        scrolled ? "border-b border-ink-line bg-ink/95" : "border-b border-transparent"
       }`}
     >
       <Container className="flex h-20 items-center justify-between gap-6">

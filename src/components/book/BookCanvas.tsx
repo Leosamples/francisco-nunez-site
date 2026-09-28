@@ -30,7 +30,19 @@ function usePageEdgeTexture() {
   }, []);
 }
 
-type Input = { current: { x: number; y: number } };
+/**
+ * What drives the tilt.
+ * - "pointer" (mouse/trackpad): cursor position across the window.
+ * - "scroll" (touch): the book's own progress through the viewport, read every
+ *   frame (smooth through iOS momentum scrolling), plus device orientation
+ *   where the browser allows it without a permission prompt (not iOS).
+ */
+type Tilt = {
+  current: { mode: "pointer" | "scroll"; px: number; py: number; gamma: number; beta: number };
+};
+
+const clamp = THREE.MathUtils.clamp;
+const lerp = THREE.MathUtils.lerp;
 
 function Book({
   coverSrc,
@@ -40,7 +52,7 @@ function Book({
 }: {
   coverSrc: string;
   aspect: number;
-  input: Input;
+  input: Tilt;
   onReady: () => void;
 }) {
   const mesh = useRef<THREE.Mesh>(null);
@@ -66,9 +78,22 @@ function Book({
     const m = mesh.current;
     if (!m) return;
     const t = state.clock.elapsedTime;
-    const { x, y } = input.current;
-    m.rotation.y = THREE.MathUtils.damp(m.rotation.y, BASE_ROT_Y + x * 0.32 + Math.sin(t * 0.5) * 0.05, 3, delta);
-    m.rotation.x = THREE.MathUtils.damp(m.rotation.x, BASE_ROT_X - y * 0.2, 3, delta);
+    const tilt = input.current;
+    let yaw: number;
+    let pitch: number;
+    if (tilt.mode === "pointer") {
+      yaw = BASE_ROT_Y + tilt.px * 0.32;
+      pitch = BASE_ROT_X - tilt.py * 0.2;
+    } else {
+      // 0 as the book enters at the bottom of the screen, 1 as it leaves the top
+      const r = state.gl.domElement.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+      yaw = lerp(-0.95, 0.35, p) + clamp(tilt.gamma / 45, -1, 1) * 0.3;
+      pitch = lerp(0.25, -0.2, p) + clamp(tilt.beta / 45, -1, 1) * 0.15;
+    }
+    m.rotation.y = THREE.MathUtils.damp(m.rotation.y, yaw + Math.sin(t * 0.5) * 0.05, 4, delta);
+    m.rotation.x = THREE.MathUtils.damp(m.rotation.x, pitch, 4, delta);
     m.rotation.z = Math.sin(t * 0.7) * 0.018;
     m.position.y = Math.sin(t * 0.9) * 0.09;
   });
@@ -93,27 +118,36 @@ export default function BookCanvas({
   active: boolean;
   onReady: () => void;
 }) {
-  const input = useRef({ x: 0, y: 0 });
+  const input = useRef<Tilt["current"]>({ mode: "scroll", px: 0, py: 0, gamma: 0, beta: 0 });
 
   useEffect(() => {
-    // Desktop: pointer tilts the book. Touch devices: scroll position does.
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    if (fine) {
+    // Mouse/trackpad: the cursor tilts the book.
+    if (window.matchMedia("(pointer: fine)").matches) {
+      input.current.mode = "pointer";
       const onMove = (e: PointerEvent) => {
-        input.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-        input.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+        input.current.px = (e.clientX / window.innerWidth) * 2 - 1;
+        input.current.py = (e.clientY / window.innerHeight) * 2 - 1;
       };
       window.addEventListener("pointermove", onMove, { passive: true });
       return () => window.removeEventListener("pointermove", onMove);
     }
-    const onScroll = () => {
-      const p = Math.min(window.scrollY / window.innerHeight, 1);
-      input.current.x = p * 1.6 - 0.2;
-      input.current.y = -p * 0.6;
+    // Touch: scroll drives the tilt (read per frame). Add phone tilt where the
+    // browser exposes it without a permission prompt; iOS requires one, so
+    // there it's scroll only.
+    input.current.mode = "scroll";
+    const DOE = window.DeviceOrientationEvent as
+      | (typeof DeviceOrientationEvent & { requestPermission?: () => Promise<string> })
+      | undefined;
+    if (!DOE || typeof DOE.requestPermission === "function") return;
+    let base: { gamma: number; beta: number } | null = null;
+    const onOrient = (e: DeviceOrientationEvent) => {
+      if (e.gamma == null || e.beta == null) return;
+      base ??= { gamma: e.gamma, beta: e.beta };
+      input.current.gamma = e.gamma - base.gamma;
+      input.current.beta = e.beta - base.beta;
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("deviceorientation", onOrient);
+    return () => window.removeEventListener("deviceorientation", onOrient);
   }, []);
 
   return (

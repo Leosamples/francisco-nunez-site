@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 
 export function SiteFooter({ links = [] }: { links?: NavItem[] }) {
   return (
-    <footer className="border-t border-ink-line bg-ink">
+    <footer className="relative z-10 border-t border-ink-line bg-ink">
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-3">
           <Logo size="footer" />

@@ -22,7 +22,8 @@ export function BookFunnel() {
   return (
     <>
       <SiteNav links={funnelNav} cta={{ label: "Get The Book", href: "#formats" }} />
-      <main>
+      {/* z-10: above the fixed laser layer (z-0) */}
+      <main className="relative z-10">
         <Hero />
         <ChapterMarquee />
         <Introduction />

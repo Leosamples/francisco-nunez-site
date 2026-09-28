@@ -10,8 +10,12 @@ import { useEffect, useRef, useState } from "react";
  *
  * One reused element, animated with the Web Animations API on transform and
  * opacity only (GPU-composited, no layout). Pauses while the tab is hidden.
- * Full intensity while the hero is on screen, a faint accent elsewhere. Screen
- * blending keeps shots from obscuring text.
+ * Full intensity while the hero is on screen, a faint accent elsewhere.
+ *
+ * Mobile Safari: no blend modes and no CSS blur filters on this full-screen
+ * fixed layer (both are expensive to composite on iOS and can stall the WebGL
+ * book beneath). The glow is a plain gradient, and the layer sits *behind*
+ * the page content (z-0; main/footer are z-10), so shots never cover text.
  *
  * Color: deep red core, amber glow (the cover's light source).
  *
@@ -112,7 +116,7 @@ export function LaserShow({ heroId }: { heroId: string }) {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-40 overflow-hidden mix-blend-screen motion-safe:transition-opacity motion-safe:duration-700"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden motion-safe:transition-opacity motion-safe:duration-700"
       style={{ opacity: heroVisible ? 1 : 0.15 }}
     >
       {/* Reduced motion: one static, faint beam where the first shot would be. */}
@@ -123,13 +127,15 @@ export function LaserShow({ heroId }: { heroId: string }) {
       <div ref={rig} className="absolute left-1/2 top-1/2 w-[170vmax] motion-reduce:hidden">
         {/* the beam: grows from its start edge, then vanishes */}
         <div ref={beam} className="relative h-px origin-left opacity-0">
-          <span className="absolute inset-x-0 -top-[5px] h-[11px] bg-[linear-gradient(90deg,rgba(245,166,35,0.12),rgba(245,166,35,0.7))] blur-[5px]" />
+          {/* amber halo: a soft vertical falloff instead of a blur filter */}
+          <span className="absolute inset-x-0 -top-[9px] h-[19px] bg-[linear-gradient(to_bottom,transparent,rgba(245,166,35,0.18)_30%,rgba(245,166,35,0.5)_50%,rgba(245,166,35,0.18)_70%,transparent)]" />
+          {/* red core */}
           <span className="absolute inset-x-0 -top-px h-[2px] bg-[linear-gradient(90deg,rgba(196,30,30,0.45),var(--color-red)_60%,#e0332b)]" />
         </div>
         {/* the bright head leading the shot */}
         <div
           ref={head}
-          className="absolute -top-[8px] left-0 h-[17px] w-[10vmax] opacity-0 bg-[linear-gradient(90deg,transparent,rgba(196,30,30,0.9)_55%,var(--color-amber)_85%,#ffdf9e)] blur-[3px]"
+          className="absolute -top-[5px] left-0 h-[11px] w-[10vmax] rounded-full opacity-0 bg-[linear-gradient(90deg,transparent,rgba(196,30,30,0.9)_55%,var(--color-amber)_85%,#ffdf9e)]"
         />
       </div>
     </div>

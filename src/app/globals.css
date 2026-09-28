@@ -81,7 +81,11 @@ html {
 }
 
 body {
-  background: var(--color-ink);
+  /* the hero's soft glow lives on the page itself so the laser layer, which
+     sits behind the content, shows through the hero */
+  background:
+    radial-gradient(ellipse at 70% 40%, var(--color-ink-raised), var(--color-ink) 65%) top / 100% 100svh no-repeat,
+    var(--color-ink);
   color: var(--color-paper);
   font-family: var(--font-sans);
 }
