@@ -34,15 +34,17 @@ export function ButtonLink({
   children: React.ReactNode;
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">) {
   const cls = `${buttonClass(variant, size)} ${className}`;
+  // primary buttons are where the flashlight cursor focuses into a laser dot
+  const cursor = (variant ?? "primary") === "primary" ? { "data-cursor": "laser" } : {};
   if (/^https?:/.test(href)) {
     return (
-      <a href={href} className={cls} target="_blank" rel="noopener noreferrer" {...rest}>
+      <a href={href} className={cls} target="_blank" rel="noopener noreferrer" {...cursor} {...rest}>
         {children}
       </a>
     );
   }
   return (
-    <Link href={href} className={cls} {...rest}>
+    <Link href={href} className={cls} {...cursor} {...rest}>
       {children}
     </Link>
   );
