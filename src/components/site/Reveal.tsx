@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
 
 /**
  * Short fade + slight rise (600ms, 20px) the first time an element scrolls
- * into view. Reduced motion: never hidden, never animated.
+ * into view. Reduced motion: fades in place, no rise (MotionProvider drops the
+ * transform).
  *
  * Content is server-rendered visible; only elements still below the fold
  * after hydration are hidden and then revealed. So no-JS visitors, crawlers,
@@ -24,7 +25,6 @@ export function Reveal({
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
   // Armed = was below the fold at hydration, so it's allowed to animate in.
   const [armed, setArmed] = useState(false);
@@ -32,9 +32,9 @@ export function Reveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || reduced) return;
+    if (!el) return;
     if (el.getBoundingClientRect().top > window.innerHeight) setArmed(true);
-  }, [reduced]);
+  }, []);
 
   return (
     <motion.div

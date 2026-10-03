@@ -27,7 +27,7 @@ export function FlashlightField() {
       {DOTS.map((d, i) => (
         <span
           key={i}
-          className="animate-drift absolute rounded-full"
+          className="animate-drift absolute rounded-full motion-reduce:animate-none"
           style={
             {
               left: `${d.x}%`,

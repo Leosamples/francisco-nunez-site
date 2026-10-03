@@ -3,8 +3,7 @@ import { chapters } from "@/content/book";
 /**
  * A continuous side-scrolling band of the eight chapter titles. CSS-only:
  * two identical tracks translate -50% on a loop. Pauses on hover. Screen
- * readers get one copy; reduced motion stops the scroll and lets the row be
- * swiped instead.
+ * readers get one copy; reduced motion keeps it scrolling, ~3x slower.
  */
 export function ChapterMarquee() {
   const track = (hidden: boolean) => (
@@ -25,8 +24,8 @@ export function ChapterMarquee() {
 
   return (
     <section aria-label="Chapters in the book" className="border-y border-ink-line py-8 sm:py-10">
-      <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)] motion-reduce:overflow-x-auto">
-        <div className="animate-marquee flex w-max hover:[animation-play-state:paused] motion-reduce:animate-none">
+      <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
+        <div className="animate-marquee flex w-max hover:[animation-play-state:paused] motion-reduce:[animation-duration:150s]">
           {track(false)}
           {track(true)}
         </div>

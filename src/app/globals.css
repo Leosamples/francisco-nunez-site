@@ -25,6 +25,7 @@
   --animate-drift: drift 18s ease-in-out infinite alternate;
   --animate-marquee: marquee 50s linear infinite;
   --animate-laser-sweep: laser-sweep 2.4s linear infinite;
+  --animate-laser-glow: laser-glow 3.2s ease-in-out infinite;
 
   @keyframes drift {
     from {
@@ -49,6 +50,17 @@
     100% {
       transform: translateX(260%);
       opacity: 0;
+    }
+  }
+
+  /* Reduced-motion stand-in for the sweep: brightness only, no movement. */
+  @keyframes laser-glow {
+    0%,
+    100% {
+      opacity: 0.45;
+    }
+    50% {
+      opacity: 1;
     }
   }
 
@@ -107,14 +119,14 @@ html.flashlight-cursor * {
   outline-offset: 3px;
 }
 
+/*
+ * Reduced motion = reduce, don't remove. Each animation decides for itself
+ * (see the motion-reduce: variants): the banner slows down, reveals fade
+ * without sliding, the "laser" underline pulses instead of streaking. Fast
+ * full-screen laser shots, the 3D tilt, and drifting lights stay off.
+ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
   }
 }
