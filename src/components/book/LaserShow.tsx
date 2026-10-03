@@ -77,6 +77,9 @@ export function LaserShow({ heroId }: { heroId: string }) {
     const fire = () => {
       const s = SHOTS[i % SHOTS.length];
       i++;
+      // read by the ?diag overlay
+      const w = window as Window & { __fnShots?: number };
+      w.__fnShots = (w.__fnShots ?? 0) + 1;
       r.style.left = `${s.x}%`;
       r.style.top = `${s.y}%`;
       r.style.transform = `translate(-50%, -50%) rotate(${s.angle}deg)`;
