@@ -28,7 +28,7 @@ import { useEffect, useRef, useState } from "react";
 export const LIGHT_SIZE = 720; // px diameter of the light pool
 /** The light's look; the nav reuses it so the pool reads as one light across the nav edge. */
 export const LIGHT_GRADIENT =
-  "bg-[radial-gradient(circle,rgba(245,241,234,0.075)_0%,rgba(245,166,35,0.06)_28%,rgba(245,166,35,0.02)_50%,transparent_70%)]";
+  "bg-[radial-gradient(circle,rgba(245,241,234,0.11)_0%,rgba(245,166,35,0.09)_28%,rgba(245,166,35,0.03)_50%,transparent_70%)]";
 /** Narrows away into the laser dot over primary buttons. */
 export const LIGHT_STATES =
   "transition-[scale,opacity] duration-300 ease-out data-[state=laser]:scale-[0.12] data-[state=laser]:opacity-0 motion-reduce:transition-none";

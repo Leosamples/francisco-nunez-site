@@ -7,7 +7,9 @@ import { BOOK_COVER, book } from "@/content/book";
 export const metadata: Metadata = {
   title: { absolute: `${book.title} — ${book.author}` },
   description: `${book.subtitle.charAt(0).toUpperCase() + book.subtitle.slice(1)}. The new book by ${book.author}.`,
+  alternates: { canonical: "/" },
   openGraph: {
+    url: "/",
     title: book.title,
     description: `${book.subtitle.charAt(0).toUpperCase() + book.subtitle.slice(1)}.`,
     images: [{ url: BOOK_COVER.src, width: BOOK_COVER.width, height: BOOK_COVER.height }],
