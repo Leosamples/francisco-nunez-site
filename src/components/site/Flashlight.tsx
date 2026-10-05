@@ -25,7 +25,13 @@ import { useEffect, useRef, useState } from "react";
  * easing, no pulse.
  */
 
-const LIGHT_SIZE = 720; // px diameter of the light pool
+export const LIGHT_SIZE = 720; // px diameter of the light pool
+/** The light's look; the nav reuses it so the pool reads as one light across the nav edge. */
+export const LIGHT_GRADIENT =
+  "bg-[radial-gradient(circle,rgba(245,241,234,0.075)_0%,rgba(245,166,35,0.06)_28%,rgba(245,166,35,0.02)_50%,transparent_70%)]";
+/** Narrows away into the laser dot over primary buttons. */
+export const LIGHT_STATES =
+  "transition-[scale,opacity] duration-300 ease-out data-[state=laser]:scale-[0.12] data-[state=laser]:opacity-0 motion-reduce:transition-none";
 const HOTSPOT = 2; // px: lens tip inside the 28px cursor icon
 const INTERACTIVE = 'a[href], button, [role="button"], summary, label[for], select, input:not([disabled])';
 
@@ -56,6 +62,14 @@ export function Flashlight() {
     const root = document.documentElement;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    // The nav draws its own copy of the light above its background (the main
+    // light sits behind content, so the nav would otherwise hide it). Mouse only.
+    let navLight: HTMLElement | null = null;
+    const nav = () => {
+      if (!navLight || !navLight.isConnected) navLight = document.querySelector<HTMLElement>("[data-flashlight-nav-light]");
+      return navLight;
+    };
+
     let mode: Mode = "none";
     const target = { x: -9999, y: -9999 };
     const pos = { x: -9999, y: -9999 };
@@ -65,6 +79,8 @@ export function Flashlight() {
     const setVisible = (on: boolean) => {
       L.dataset.on = on ? "1" : "0";
       if (C) C.dataset.on = on && mode === "mouse" ? "1" : "0";
+      const n = nav();
+      if (n) n.dataset.on = on && mode === "mouse" ? "1" : "0";
     };
 
     const frame = (now: number) => {
@@ -75,7 +91,11 @@ export function Flashlight() {
       const k = reduced.matches ? 1 : 1 - Math.exp(-dt * 12);
       pos.x += (target.x - pos.x) * k;
       pos.y += (target.y - pos.y) * k;
-      L.style.transform = `translate3d(${pos.x - LIGHT_SIZE / 2}px, ${pos.y - LIGHT_SIZE / 2}px, 0)`;
+      const lightTf = `translate3d(${pos.x - LIGHT_SIZE / 2}px, ${pos.y - LIGHT_SIZE / 2}px, 0)`;
+      L.style.transform = lightTf;
+      // the nav is fixed at the viewport's top-left, so the same transform lines up
+      const n = mode === "mouse" ? nav() : null;
+      if (n) n.style.transform = lightTf;
       if (C && mode === "mouse") {
         C.style.transform = `translate3d(${target.x - HOTSPOT}px, ${target.y - HOTSPOT}px, 0)`;
         // confirmed running: now it's safe to hide the system cursor
@@ -101,6 +121,8 @@ export function Flashlight() {
       if (CI.dataset.state !== state) {
         CI.dataset.state = state;
         LI.dataset.state = state;
+        const ni = nav()?.firstElementChild as HTMLElement | null | undefined;
+        if (ni) ni.dataset.state = state;
       }
     };
     const onPointerMove = (e: PointerEvent) => {
@@ -175,7 +197,7 @@ export function Flashlight() {
         <div
           ref={lightInner}
           data-state="idle"
-          className="size-full rounded-full bg-[radial-gradient(circle,rgba(245,241,234,0.075)_0%,rgba(245,166,35,0.06)_28%,rgba(245,166,35,0.02)_50%,transparent_70%)] transition-[scale,opacity] duration-300 ease-out data-[state=laser]:scale-[0.12] data-[state=laser]:opacity-0 motion-reduce:transition-none"
+          className={`size-full rounded-full ${LIGHT_GRADIENT} ${LIGHT_STATES}`}
         />
       </div>
 
