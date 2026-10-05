@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { wordAtPoint } from "@/lib/wordAtPoint";
 
 /**
  * Flashlight cursor + ambient light.
@@ -15,6 +16,9 @@ import { useEffect, useRef, useState } from "react";
  * - laser dot (z-[100]): over primary buttons ([data-cursor="laser"]) the wide
  *   light narrows away and a tight red dot appears at the hotspot — scattered
  *   light focusing into a laser.
+ *
+ * - lit word: the word under the lens tip brightens with a warm glow
+ *   (CSS Custom Highlight API; mouse/trackpad only; not on primary buttons).
  *
  * One requestAnimationFrame loop positions everything and stops when nothing
  * is moving. The system cursor is hidden (html.flashlight-cursor) only after
@@ -70,6 +74,23 @@ export function Flashlight() {
       return navLight;
     };
 
+    // The word under the lens is lit via the CSS Custom Highlight API
+    // (::highlight(flashlight) in globals.css): restyles text without touching
+    // the DOM. Browsers without it simply don't light words.
+    const highlight = typeof Highlight !== "undefined" && typeof CSS !== "undefined" && "highlights" in CSS ? new Highlight() : null;
+    if (highlight) CSS.highlights.set("flashlight", highlight);
+    let litWord: Range | null = null;
+    let wordDirty = false;
+    const setWord = (r: Range | null) => {
+      if (!highlight) return;
+      const same =
+        r && litWord && r.startContainer === litWord.startContainer && r.startOffset === litWord.startOffset && r.endOffset === litWord.endOffset;
+      if (same || (!r && !litWord)) return;
+      highlight.clear();
+      if (r) highlight.add(r);
+      litWord = r;
+    };
+
     let mode: Mode = "none";
     const target = { x: -9999, y: -9999 };
     const pos = { x: -9999, y: -9999 };
@@ -96,6 +117,10 @@ export function Flashlight() {
       // the nav is fixed at the viewport's top-left, so the same transform lines up
       const n = mode === "mouse" ? nav() : null;
       if (n) n.style.transform = lightTf;
+      if (wordDirty && mode === "mouse") {
+        wordDirty = false;
+        setWord(CI?.dataset.state === "laser" ? null : wordAtPoint(target.x, target.y));
+      }
       if (C && mode === "mouse") {
         C.style.transform = `translate3d(${target.x - HOTSPOT}px, ${target.y - HOTSPOT}px, 0)`;
         // confirmed running: now it's safe to hide the system cursor
@@ -135,10 +160,18 @@ export function Flashlight() {
       target.y = e.clientY;
       setVisible(true);
       setState(e.target as Element);
+      wordDirty = true;
       kick();
     };
     const onPointerLeave = () => {
       if (mode === "mouse") setVisible(false);
+      setWord(null);
+    };
+    // text scrolls under a still cursor: re-check which word is lit
+    const onScroll = () => {
+      if (mode !== "mouse" || !highlight) return;
+      wordDirty = true;
+      kick();
     };
 
     // ---- touch: light follows the finger while it's down (touch events keep
@@ -148,6 +181,7 @@ export function Flashlight() {
       if (!t) return;
       if (mode !== "touch") {
         mode = "touch";
+        setWord(null);
         root.classList.remove("flashlight-cursor");
         if (C) C.dataset.on = "0";
       }
@@ -166,6 +200,7 @@ export function Flashlight() {
     window.addEventListener("pointerdown", onPointerMove, { passive: true });
     document.documentElement.addEventListener("pointerleave", onPointerLeave);
     window.addEventListener("blur", onPointerLeave);
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("touchstart", onTouch, { passive: true });
     window.addEventListener("touchmove", onTouch, { passive: true });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
@@ -173,6 +208,8 @@ export function Flashlight() {
     return () => {
       cancelAnimationFrame(raf);
       root.classList.remove("flashlight-cursor");
+      if (highlight) CSS.highlights.delete("flashlight");
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerMove);
       document.documentElement.removeEventListener("pointerleave", onPointerLeave);

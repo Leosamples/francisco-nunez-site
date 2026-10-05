@@ -107,6 +107,16 @@ body {
   color: var(--color-paper);
 }
 
+/* The word under the flashlight's lens (see <Flashlight>): brighter, warmer,
+   with a soft amber glow — lit, not highlighted. */
+::highlight(flashlight) {
+  color: #fffaf2;
+  text-shadow:
+    0 0 1px rgb(255 248 236 / 0.7),
+    0 0 8px rgb(245 166 35 / 0.8),
+    0 0 20px rgb(245 166 35 / 0.4);
+}
+
 /* Set by <Flashlight> only once the custom cursor is confirmed drawing, so the
    native cursor remains the fallback until then (and if JS never runs). */
 html.flashlight-cursor,
