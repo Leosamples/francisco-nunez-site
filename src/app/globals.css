@@ -140,3 +140,140 @@ html.flashlight-cursor * {
     scroll-behavior: auto;
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * The 3D book (BookCuboid): a CSS cuboid. One height drives everything;
+ * width and thickness follow the dust-jacket art (1534 x 288 x 2700).
+ * ------------------------------------------------------------------ */
+.book-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 40px 0 56px;
+}
+.book-scene {
+  --h: clamp(300px, 54vh, 470px);
+  --w: calc(var(--h) * 0.5681); /* 1534 / 2700 */
+  --t: calc(var(--h) * 0.1067); /* 288 / 2700 */
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  perspective: 1500px;
+  touch-action: pan-y; /* horizontal drags spin the book; vertical swipes still scroll */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.book-scene[data-dragging] {
+  cursor: grabbing;
+}
+/* the cover images must not start a native image drag (it cancels the spin) */
+.book-scene img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media (max-width: 767px) {
+  .book-scene {
+    --h: clamp(260px, 44vh, 360px);
+  }
+}
+.book-float {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: book-float 7s ease-in-out infinite alternate;
+}
+@keyframes book-float {
+  from {
+    transform: translateY(-8px);
+  }
+  to {
+    transform: translateY(8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .book-float {
+    animation: none;
+  }
+}
+.cuboid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.face {
+  position: absolute;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.face-front,
+.face-back {
+  inset: 0;
+}
+.face-front {
+  transform: translateZ(calc(var(--t) / 2));
+}
+.face-back {
+  transform: rotateY(180deg) translateZ(calc(var(--t) / 2));
+}
+.face-spine,
+.face-edge {
+  top: 0;
+  height: 100%;
+  width: var(--t);
+  left: calc((var(--w) - var(--t)) / 2);
+}
+.face-spine {
+  transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+}
+/* the page block: cream, with fine page lines */
+.face-edge,
+.face-top,
+.face-bottom {
+  background-color: #f0e9dc;
+}
+.face-edge {
+  transform: rotateY(90deg) translateZ(calc(var(--w) / 2));
+  background-image: repeating-linear-gradient(90deg, rgb(120 104 84 / 0.16) 0 1px, transparent 1px 3px),
+    linear-gradient(90deg, rgb(0 0 0 / 0.18), transparent 18%, transparent 82%, rgb(0 0 0 / 0.18));
+}
+.face-top,
+.face-bottom {
+  left: 0;
+  width: 100%;
+  height: var(--t);
+  top: calc((var(--h) - var(--t)) / 2);
+  background-image: repeating-linear-gradient(0deg, rgb(120 104 84 / 0.16) 0 1px, transparent 1px 3px),
+    linear-gradient(0deg, rgb(0 0 0 / 0.14), transparent 22%, transparent 78%, rgb(0 0 0 / 0.14));
+}
+.face-top {
+  transform: rotateX(90deg) translateZ(calc(var(--h) / 2));
+}
+.face-bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--h) / 2));
+}
+.face-shade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0.2;
+  pointer-events: none;
+  /* its own compositor layer: the per-frame opacity change doesn't repaint the face */
+  will-change: opacity;
+}
+/* soft contact shadow under the book */
+.book-floor {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  width: calc(var(--w, 260px) * 1.1);
+  max-width: 300px;
+  height: 22px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.7), transparent);
+  pointer-events: none;
+}

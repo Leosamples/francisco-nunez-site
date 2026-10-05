@@ -13,12 +13,18 @@ export const book = {
   author: "Francisco Nunez",
 };
 
+/** The front cover as a flat image: the social share image. */
+export const BOOK_COVER = { src: "/images/book-cover.jpg", width: 909, height: 1600 };
+
 /**
- * The final cover (concept 6 from "First Covers -TSC.pdf"), flattened from the
- * mockup to the front face only. Drives the 3D book's texture and proportions,
- * the static fallback, and the social share image.
+ * The dust jacket, face by face, for the 3D book in the hero. Proportions
+ * come from the art: width 0.568x and thickness 0.107x the height.
  */
-export const BOOK_COVER = { src: "/images/book-cover.jpg", width: 962, height: 1542 };
+export const JACKET = {
+  front: { src: "/images/cover-front.png", width: 1534, height: 2700 },
+  spine: { src: "/images/cover-spine.png", width: 288, height: 2700 },
+  back: { src: "/images/cover-back.png", width: 1560, height: 2700 },
+};
 
 // In-page anchors; the funnel is currently the whole site.
 export const funnelNav: NavItem[] = [

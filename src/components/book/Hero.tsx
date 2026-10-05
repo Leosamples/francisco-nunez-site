@@ -2,7 +2,7 @@ import { book } from "@/content/book";
 import { ButtonLink } from "@/components/site/Button";
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/SectionHeading";
-import { BookStage } from "./BookStage";
+import { BookCuboid } from "./BookCuboid";
 import { FlashlightField } from "./FlashlightField";
 import { withLaser } from "./LaserWord";
 
@@ -41,7 +41,7 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <BookStage />
+        <BookCuboid />
       </Container>
     </section>
   );
