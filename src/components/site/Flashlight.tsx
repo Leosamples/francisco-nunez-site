@@ -17,8 +17,10 @@ import { wordAtPoint } from "@/lib/wordAtPoint";
  *   light narrows away and a tight red dot appears at the hotspot — scattered
  *   light focusing into a laser.
  *
- * - lit word: the word under the lens tip brightens with a warm glow
- *   (CSS Custom Highlight API; mouse/trackpad only; not on primary buttons).
+ * - lit word: the word under the lens tip brightens with a warm glow (CSS
+ *   Custom Highlight API), and a soft oval of light lands on it — the beam's
+ *   spot on the page (z-[60], low strength, sized to the word). Mouse/trackpad
+ *   only; not on primary buttons.
  *
  * One requestAnimationFrame loop positions everything and stops when nothing
  * is moving. The system cursor is hidden (html.flashlight-cursor) only after
@@ -37,6 +39,9 @@ export const LIGHT_GRADIENT =
 export const LIGHT_STATES =
   "transition-[scale,opacity] duration-300 ease-out data-[state=laser]:scale-[0.12] data-[state=laser]:opacity-0 motion-reduce:transition-none";
 const HOTSPOT = 2; // px: lens tip inside the 28px cursor icon
+// The beam's spot on the lit word: a base ellipse scaled to fit each word.
+const SPOT_W = 200;
+const SPOT_H = 100;
 const INTERACTIVE = 'a[href], button, [role="button"], summary, label[for], select, input:not([disabled])';
 
 type Mode = "none" | "mouse" | "touch";
@@ -47,6 +52,7 @@ export function Flashlight() {
   const lightInner = useRef<HTMLDivElement>(null);
   const cursor = useRef<HTMLDivElement>(null);
   const cursorInner = useRef<HTMLDivElement>(null);
+  const spot = useRef<HTMLDivElement>(null);
 
   // Only build the custom cursor where a precise pointer exists.
   useEffect(() => {
@@ -91,6 +97,25 @@ export function Flashlight() {
       litWord = r;
     };
 
+    // The beam landing on the lit word: a soft warm oval sized to the word,
+    // drawn over the text at low strength (light on a page, not a highlighter).
+    // Glides word to word; fades in fresh rather than sliding in from afar.
+    const placeSpot = (r: Range | null) => {
+      const SP = spot.current;
+      if (!SP) return;
+      if (!r) {
+        SP.dataset.on = "0";
+        return;
+      }
+      const b = r.getBoundingClientRect();
+      const w = Math.max(b.width + 56, 72);
+      const h = Math.max(b.height * 2.6, 52);
+      const appearing = SP.dataset.on !== "1";
+      SP.style.transition = appearing || reduced.matches ? "opacity 200ms ease-out" : "";
+      SP.style.transform = `translate3d(${b.left + b.width / 2 - SPOT_W / 2}px, ${b.top + b.height / 2 - SPOT_H / 2}px, 0) scale(${w / SPOT_W}, ${h / SPOT_H})`;
+      SP.dataset.on = "1";
+    };
+
     let mode: Mode = "none";
     const target = { x: -9999, y: -9999 };
     const pos = { x: -9999, y: -9999 };
@@ -119,7 +144,9 @@ export function Flashlight() {
       if (n) n.style.transform = lightTf;
       if (wordDirty && mode === "mouse") {
         wordDirty = false;
-        setWord(CI?.dataset.state === "laser" ? null : wordAtPoint(target.x, target.y));
+        const word = CI?.dataset.state === "laser" ? null : wordAtPoint(target.x, target.y);
+        setWord(word);
+        placeSpot(word);
       }
       if (C && mode === "mouse") {
         C.style.transform = `translate3d(${target.x - HOTSPOT}px, ${target.y - HOTSPOT}px, 0)`;
@@ -166,6 +193,7 @@ export function Flashlight() {
     const onPointerLeave = () => {
       if (mode === "mouse") setVisible(false);
       setWord(null);
+      placeSpot(null);
     };
     // text scrolls under a still cursor: re-check which word is lit
     const onScroll = () => {
@@ -182,6 +210,7 @@ export function Flashlight() {
       if (mode !== "touch") {
         mode = "touch";
         setWord(null);
+        placeSpot(null);
         root.classList.remove("flashlight-cursor");
         if (C) C.dataset.on = "0";
       }
@@ -237,6 +266,17 @@ export function Flashlight() {
           className={`size-full rounded-full ${LIGHT_GRADIENT} ${LIGHT_STATES}`}
         />
       </div>
+
+      {/* the beam's spot on the lit word — above the nav (z-60), below the cursor */}
+      {finePointer && (
+        <div
+          ref={spot}
+          aria-hidden
+          data-on="0"
+          className="pointer-events-none fixed top-0 left-0 z-[60] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,244,228,0.16)_0%,rgba(245,166,35,0.11)_36%,rgba(245,166,35,0.035)_58%,transparent_72%)] opacity-0 transition-[transform,opacity] duration-150 ease-out will-change-transform data-[on=1]:opacity-100"
+          style={{ width: SPOT_W, height: SPOT_H }}
+        />
+      )}
 
       {/* the cursor + laser dot — only where there's a fine pointer */}
       {finePointer && (
