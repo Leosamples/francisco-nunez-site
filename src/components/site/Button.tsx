@@ -36,15 +36,6 @@ export function ButtonLink({
   const cls = `${buttonClass(variant, size)} ${className}`;
   // primary buttons are where the flashlight cursor focuses into a laser dot
   const cursor = (variant ?? "primary") === "primary" ? { "data-cursor": "laser" } : {};
-  // In-page #links stay plain anchors: Next's <Link> updates the URL with
-  // pushState, which doesn't fire hashchange (the book turns to sections on it).
-  if (href.startsWith("#")) {
-    return (
-      <a href={href} className={cls} {...cursor} {...rest}>
-        {children}
-      </a>
-    );
-  }
   if (/^https?:/.test(href)) {
     return (
       <a href={href} className={cls} target="_blank" rel="noopener noreferrer" {...cursor} {...rest}>
