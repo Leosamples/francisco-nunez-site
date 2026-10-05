@@ -6,12 +6,17 @@ Right now the site is only the book funnel for *The Source Code to Focus*, serve
 
 ## Structure
 
+Right now the site is only the book funnel for *The Source Code to Focus*, served at `/`, laid out as an open book: every section is a two-page spread.
+
 - `src/app/page.tsx` — mounts `<BookFunnel />`. When the full site launches, move this file to `src/app/book/page.tsx`.
-- `src/components/site/` — shared across pages: nav, footer, logo, buttons, container, section headings, scroll reveal.
-- `src/components/book/` — funnel sections, and the 3D book (`BookStage` → `BookCanvas`).
-- `src/content/` — all copy and config. `book.ts` holds the chapters, bonus, bio, prices, distributor links, and the cover image (`BOOK_COVER`).
-- Brand tokens live in `src/app/globals.css` (`@theme`).
-- Logo: `public/images/logo.png`, used as-is in the nav and footer. The favicon (`src/app/icon.png`) is the emblem cropped from it.
+- `src/components/book/BookFunnel.tsx` — the page list in reading order (front matter gets roman folios, then 1, 2, 3 from the Contents).
+- `src/components/book/pages.tsx` — what's on each page; long texts are split across pages by paragraph ranges.
+- `src/components/book/spread/` — `SpreadBook` (page turning: flip, keys, swipe, edges, #hash), `Page` (paper, spine shadow, folio).
+- `src/components/site/` — shared across pages: nav, flashlight cursor/light, logo, buttons, reveal.
+- `src/content/` — all copy and config (`book.ts`: chapters, bonus, bio, prices, distributor links, cover).
+- Brand tokens and the book/spread CSS live in `src/app/globals.css`.
+- Logo: `public/images/logo.png`, used as-is in the nav. The favicon (`src/app/icon.png`) is the emblem cropped from it.
+- `/?diag` shows an on-device diagnostics overlay (iOS version, hydration, reduced motion, errors).
 
 ## Setup
 

@@ -14,7 +14,7 @@ export function ChapterMarquee() {
             <span className="font-sans text-xs font-semibold tracking-[0.2em] text-muted tabular-nums">
               {String(ch.number).padStart(2, "0")}
             </span>
-            <span className="font-serif text-3xl font-light text-paper/90 italic sm:text-5xl">{ch.title}</span>
+            <span className="font-serif text-[clamp(20px,3.2vh,34px)] font-light text-paper/80 italic">{ch.title}</span>
           </span>
           <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-red" />
         </li>
@@ -23,7 +23,7 @@ export function ChapterMarquee() {
   );
 
   return (
-    <section aria-label="Chapters in the book" className="border-y border-ink-line py-8 sm:py-10">
+    <section aria-label="Chapters in the book" className="border-y border-ink-line/70 py-[1.6vh]">
       <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
         <div className="animate-marquee flex w-max hover:[animation-play-state:paused] motion-reduce:[animation-duration:150s]">
           {track(false)}

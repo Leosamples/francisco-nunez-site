@@ -8,8 +8,9 @@ import { motion, useInView } from "motion/react";
  * into view. Reduced motion: fades in place, no rise (MotionProvider drops the
  * transform).
  *
- * Content is server-rendered visible; only elements still below the fold
- * after hydration are hidden and then revealed. So no-JS visitors, crawlers,
+ * Content is server-rendered visible; only elements still below the fold after
+ * hydration are hidden and then revealed. Inert inside the book (.book), where
+ * turning the page is the entrance. So no-JS visitors, crawlers,
  * and deep links (e.g. /#author) never see blank sections.
  */
 export function Reveal({
@@ -32,7 +33,9 @@ export function Reveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    // In the book, the page turn is the entrance: arming here would make a page
+    // fade out and back in right after the leaf lands on it.
+    if (!el || el.closest(".book")) return;
     if (el.getBoundingClientRect().top > window.innerHeight) setArmed(true);
   }, []);
 
