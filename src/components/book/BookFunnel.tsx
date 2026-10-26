@@ -22,7 +22,7 @@ import { PullQuote } from "./PullQuote";
 export function BookFunnel() {
   return (
     <>
-      <SiteNav links={funnelNav} cta={{ label: "Get The Book", href: "#formats" }} />
+      <SiteNav links={funnelNav} cta={{ label: "Get The Book", href: "#preorder" }} />
       {/* z-10: above the fixed laser layer (z-0) */}
       <main className="relative z-10">
         <Hero />

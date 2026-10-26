@@ -30,7 +30,7 @@ export function Hero() {
             By <span className="text-paper">{book.author}</span>
           </p>
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <ButtonLink href="#formats" size="lg">
+            <ButtonLink href="#preorder" size="lg">
               Get The Book
             </ButtonLink>
             <a
