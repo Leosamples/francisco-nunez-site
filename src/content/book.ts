@@ -226,10 +226,21 @@ export const emailCapture = {
   body: "Release dates, early excerpts, and first word when the book goes live. No noise.",
 };
 
+// Event details from the release-party poster ("Cinematic Book Release Party Poster.png").
+export const releaseParty = {
+  heading: "You’re invited.",
+  body: "Join us for the official book release party for The Source Code to Focus — an evening of meaningful conversation, community, and inspiration. Come connect, celebrate, and be part of a movement toward greater focus, clarity, and execution.",
+  date: "Tue, Oct 27",
+  time: "6–10 PM",
+  venue: "Hazel — National Landing",
+  address: "3030 Potomac Avenue, Arlington, VA 22202",
+  mapHref: "https://maps.google.com/?q=Hazel+National+Landing,+3030+Potomac+Avenue,+Arlington,+VA+22202",
+  extras: ["Featuring Sounds By Tre", "Finger food / small plates"],
+};
+
 export const preorder = {
-  heading: "Reserve your copy.",
   cta: "Pre-Order / RSVP — $25",
-  includes: "Includes a signed copy of the book and your seat at the launch event.",
+  includes: "Includes event RSVP, a signed copy of the book, and a personal message from Francisco.",
   // Cash App's universal link: opens the app on phones, the web page on desktop.
   href: "https://cash.app/$francisconunez",
   qr: "/images/cashapp-qr.svg",

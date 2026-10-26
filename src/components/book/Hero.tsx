@@ -1,8 +1,9 @@
-import { book } from "@/content/book";
+import { book, preorder, releaseParty } from "@/content/book";
 import { ButtonLink } from "@/components/site/Button";
 import { Container } from "@/components/site/Container";
 import { Eyebrow } from "@/components/site/SectionHeading";
 import { BookCuboid } from "./BookCuboid";
+import { CashAppQr } from "./Preorder";
 import { FlashlightField } from "./FlashlightField";
 import { withLaser } from "./LaserWord";
 
@@ -29,6 +30,15 @@ export function Hero() {
           <p className="mt-8 font-sans text-sm text-muted">
             By <span className="text-paper">{book.author}</span>
           </p>
+          <a
+            href="#preorder"
+            className="mt-6 inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 border-l-2 border-red pl-4 font-sans text-sm text-paper/85 transition hover:text-amber"
+          >
+            <span className="text-[0.6875rem] font-semibold tracking-[0.2em] text-amber uppercase">Release party</span>
+            <span>
+              {releaseParty.date} · {releaseParty.time} · {releaseParty.venue}
+            </span>
+          </a>
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
             <ButtonLink href="#preorder" size="lg">
               Get The Book
@@ -41,7 +51,20 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <BookCuboid />
+        {/* the book with its order button + QR beneath: one pairing, side by side
+            from sm up, stacked on phones */}
+        <div className="flex flex-col items-center">
+          <BookCuboid />
+          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-center">
+            <div className="max-w-60 text-center sm:text-left">
+              <ButtonLink href={preorder.href} size="md">
+                {preorder.cta}
+              </ButtonLink>
+              <p className="mt-4 font-serif text-base text-muted italic">{preorder.instruction}</p>
+            </div>
+            <CashAppQr size={112} />
+          </div>
+        </div>
       </Container>
     </section>
   );

@@ -26,6 +26,7 @@ export function BookFunnel() {
       {/* z-10: above the fixed laser layer (z-0) */}
       <main className="relative z-10">
         <Hero />
+        <Preorder id="preorder" order={false} />
         <ChapterMarquee />
         <Introduction />
         <AuthorNote />
@@ -35,7 +36,7 @@ export function BookFunnel() {
         <FocusFramework />
         <AboutAuthor />
         <FormatCards />
-        <Preorder />
+        <Preorder id="rsvp" numeral="VIII" />
         <EmailCapture />
       </main>
       <SiteFooter links={funnelNav} />
