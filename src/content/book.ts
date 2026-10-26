@@ -228,6 +228,7 @@ export const emailCapture = {
 export const preorder = {
   heading: "Reserve your copy.",
   cta: "Pre-Order / RSVP — $25",
+  includes: "Includes a signed copy of the book and your seat at the launch event.",
   // Cash App's universal link: opens the app on phones, the web page on desktop.
   href: "https://cash.app/$francisconunez",
   qr: "/images/cashapp-qr.svg",

@@ -14,7 +14,8 @@ export function Preorder() {
           <ButtonLink href={preorder.href} size="lg">
             {preorder.cta}
           </ButtonLink>
-          <p className="mt-6 max-w-md font-serif text-lg text-muted italic">{preorder.instruction}</p>
+          <p className="mt-6 max-w-md font-serif text-xl text-paper/85">{preorder.includes}</p>
+          <p className="mt-3 max-w-md font-serif text-lg text-muted italic">{preorder.instruction}</p>
         </div>
         <figure className="shrink-0">
           <Image
