@@ -224,3 +224,12 @@ export const emailCapture = {
   heading: "Not ready yet? Get launch updates.",
   body: "Release dates, early excerpts, and first word when the book goes live. No noise.",
 };
+
+export const preorder = {
+  heading: "Reserve your copy.",
+  cta: "Pre-Order / RSVP — $25",
+  // Cash App's universal link: opens the app on phones, the web page on desktop.
+  href: "https://cash.app/$francisconunez",
+  qr: "/images/cashapp-qr.svg",
+  instruction: "Leave your full name in the Cash App payment note so we can match your RSVP.",
+};

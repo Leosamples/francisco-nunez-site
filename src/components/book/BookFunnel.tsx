@@ -12,6 +12,7 @@ import { FormatCards } from "./FormatCards";
 import { Hero } from "./Hero";
 import { Introduction } from "./Introduction";
 import { LaserShow } from "./LaserShow";
+import { Preorder } from "./Preorder";
 import { PullQuote } from "./PullQuote";
 
 /**
@@ -34,6 +35,7 @@ export function BookFunnel() {
         <FocusFramework />
         <AboutAuthor />
         <FormatCards />
+        <Preorder />
         <EmailCapture />
       </main>
       <SiteFooter links={funnelNav} />
