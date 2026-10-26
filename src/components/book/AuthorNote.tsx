@@ -6,9 +6,9 @@ import { Eyebrow, SectionHeading } from "@/components/site/SectionHeading";
 import { CoverLine } from "./CoverLine";
 
 /**
- * Author's note. The cutout of Francisco holding the book stands free on the
+ * Author's note. The cutout of Francisco stands free on the
  * page — staged on the cover's amber glow and red laser line — and runs off
- * the bottom of its block so the mid-thigh crop is never seen as a flat edge.
+ * the bottom of its block so the bottom crop is never seen as a flat edge.
  */
 export function AuthorNote() {
   const { heading, lines, signature, photo } = authorNote;
@@ -21,7 +21,7 @@ export function AuthorNote() {
       <Container className="grid gap-y-14 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-x-20">
         {/* figure: bottom-anchored, bleeds off the bottom of the section */}
         {/* The block is unclipped so the glow can spread past the shoulders; only the
-            image sits in an overflow-hidden wrapper, which trims the mid-thigh crop
+            image sits in an overflow-hidden wrapper, which trims the bottom crop
             with a pixel-snapped edge (clip-path left an anti-aliased hairline). Top
             padding is headroom where the laser line shows above the head. */}
         <div className="relative isolate order-1 pt-16 lg:self-end lg:pt-24">
@@ -41,7 +41,7 @@ export function AuthorNote() {
                 height={photo.height}
                 alt={photo.alt}
                 sizes="(min-width: 1024px) 40vw, (min-width: 640px) 60vw, 90vw"
-                className="-mb-[6%] mx-auto block aspect-[1284/2101] h-[min(70vh,145vw)] w-auto lg:h-auto lg:w-full"
+                className="-mb-[6%] mx-auto block aspect-[1288/2037] h-[min(70vh,145vw)] w-auto lg:h-auto lg:w-full"
               />
             </Reveal>
           </div>

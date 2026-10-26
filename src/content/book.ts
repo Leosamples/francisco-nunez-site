@@ -60,12 +60,13 @@ export const authorNote = {
     "The principles in this book are the very tenets I had to apply to see it through to completion successfully.",
   ],
   signature: "Francisco Nunez",
-  // Transparent cutout (real alpha), cropped mid-thigh with a flat bottom edge.
+  // Transparent cutout (real alpha) of francisco-photo-2-blazer.jpg, cropped
+  // at the hips with a flat bottom edge.
   photo: {
-    src: "/images/francisco-book.png",
-    width: 1284,
-    height: 2101,
-    alt: "Francisco Nunez holding The Source Code to Focus",
+    src: "/images/francisco/francisco-photo-2-blazer-cutout.png",
+    width: 1288,
+    height: 2037,
+    alt: "Francisco Nunez",
   },
 };
 
@@ -193,7 +194,7 @@ export const focusFramework = {
 
 export const author = {
   name: "Francisco Nunez",
-  photo: { src: "/images/francisco-portrait.jpg", width: 696, height: 1400 },
+  photo: { src: "/images/francisco/francisco-photo-3-smiling.jpg", width: 1714, height: 2576 },
   // The book's About the Author page, verbatim except the employer, which is
   // not named on the site.
   bio: [
