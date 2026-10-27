@@ -40,7 +40,7 @@ export function Hero() {
             </span>
           </a>
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <ButtonLink href="#preorder" size="lg">
+            <ButtonLink href={preorder.href} size="lg">
               Get The Book
             </ButtonLink>
             <a

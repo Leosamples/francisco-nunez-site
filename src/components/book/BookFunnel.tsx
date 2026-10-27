@@ -1,4 +1,4 @@
-import { funnelNav } from "@/content/book";
+import { funnelNav, preorder } from "@/content/book";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { AboutAuthor } from "./AboutAuthor";
@@ -22,7 +22,7 @@ import { PullQuote } from "./PullQuote";
 export function BookFunnel() {
   return (
     <>
-      <SiteNav links={funnelNav} cta={{ label: "Get The Book", href: "#preorder" }} />
+      <SiteNav links={funnelNav} cta={{ label: "Get The Book", href: preorder.href }} />
       {/* z-10: above the fixed laser layer (z-0) */}
       <main className="relative z-10">
         <Hero />
