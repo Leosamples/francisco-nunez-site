@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { book, JACKET } from "@/content/book";
+import { backCover, book, JACKET } from "@/content/book";
 
 /**
  * The book as a real CSS 3D cuboid: six faces in one preserve-3d box —
- * front, back and spine from the dust-jacket art, cream page block on the
- * fore-edge, top and bottom. Proportions come from the art (see .book-scene).
+ * front and spine from the dust-jacket art, a typeset back cover (an excerpt
+ * from Chapter 2), cream page block on the fore-edge, top and bottom.
+ * Proportions come from the art (see .book-scene). Faces hide their backs, so
+ * the back cover only shows when the book is turned to it.
  *
  * Motion: slow continuous 360° turn (~28s) with a gentle float, plus drag to
  * spin (with momentum; the slow turn eases back in). Each face's shade follows
@@ -169,8 +171,8 @@ export function BookCuboid() {
               <Image src={JACKET.front.src} alt="" fill priority sizes="(min-width: 1024px) 280px, 220px" draggable={false} className="object-cover" />
               <span data-shade="front" className="face-shade" />
             </div>
-            <div className="face face-back">
-              <Image src={JACKET.back.src} alt="" fill sizes="(min-width: 1024px) 280px, 220px" draggable={false} className="object-cover" />
+            <div className="face face-back back-cover">
+              <BackCover />
               <span data-shade="back" className="face-shade" />
             </div>
             <div className="face face-spine">
@@ -186,6 +188,43 @@ export function BookCuboid() {
         </div>
       </div>
       <div aria-hidden className="book-floor" />
+    </div>
+  );
+}
+
+/** "Laser" set in the cover's red, as on the front. Static: no sweep inside the 3D box. */
+const redLaser = (text: string) =>
+  text.split(/\b(laser)\b/i).map((part, i) =>
+    /^laser$/i.test(part) ? (
+      <span key={i} className="text-red">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+
+/** The back of the jacket, typeset. Sizes are in em, scaled to the book (see .back-cover). */
+function BackCover() {
+  return (
+    <div className="flex h-full flex-col px-[10%] pt-[11%] pb-[9%]">
+      <p className="font-sans text-[0.62em] font-semibold tracking-[0.2em] text-amber uppercase">{backCover.kicker}</p>
+      <p className="mt-[0.6em] font-serif text-[1.55em] leading-[1.1] font-medium text-paper">{redLaser(backCover.heading)}</p>
+      <div className="mt-[1.1em] space-y-[0.55em] font-serif text-[0.9em] leading-[1.45] text-paper/85">
+        {backCover.runs.map((run, r) => (
+          <div key={r} className="space-y-[0.55em]">
+            {r > 0 && <p className="text-center font-sans tracking-[0.6em] text-muted">· · ·</p>}
+            {run.map((p) => (
+              <p key={p} className={p.length < 50 ? "font-medium text-paper italic" : undefined}>
+                {p}
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
+      <p className="mt-auto border-t border-ink-line pt-[0.8em] font-sans text-[0.62em] font-semibold tracking-[0.2em] text-muted uppercase">
+        {book.author}
+      </p>
     </div>
   );
 }

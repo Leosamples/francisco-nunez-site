@@ -18,12 +18,12 @@ export const BOOK_COVER = { src: "/images/book-cover.jpg", width: 909, height: 1
 
 /**
  * The dust jacket, face by face, for the 3D book in the hero. Proportions
- * come from the art: width 0.568x and thickness 0.107x the height.
+ * come from the art: width 0.568x and thickness 0.107x the height. The back
+ * cover is set in HTML from `backCover` (the jacket's back art was placeholder).
  */
 export const JACKET = {
   front: { src: "/images/cover-front.png", width: 1534, height: 2700 },
   spine: { src: "/images/cover-spine.png", width: 288, height: 2700 },
-  back: { src: "/images/cover-back.png", width: 1560, height: 2700 },
 };
 
 // In-page anchors; the funnel is currently the whole site.
@@ -245,4 +245,15 @@ export const preorder = {
   href: "https://cash.app/$francisconunez",
   qr: "/images/cashapp-qr.svg",
   instruction: "Leave your full name in the Cash App payment note so we can match your RSVP.",
+};
+
+/**
+ * The 3D book's back cover: the last two passages of the Chapter 2 excerpt,
+ * by reference so the copy stays in one place (all four are too long to set
+ * legibly on a jacket). Each inner array is a run, as in `excerpt`.
+ */
+export const backCover = {
+  kicker: excerpt.source,
+  heading: excerpt.heading,
+  runs: [excerpt.runs[2], excerpt.runs[3]],
 };

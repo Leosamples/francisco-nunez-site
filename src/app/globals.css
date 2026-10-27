@@ -219,6 +219,24 @@ html.flashlight-cursor * {
 .face-back {
   transform: rotateY(180deg) translateZ(calc(var(--t) / 2));
 }
+/* the typeset back cover: the front's black with its amber glow low and a red
+   laser line, mirrored; type scales with the book */
+.back-cover {
+  font-size: calc(var(--h) * 0.024);
+  background:
+    radial-gradient(ellipse 85% 40% at 50% 100%, rgb(245 166 35 / 0.2), transparent 70%),
+    var(--color-ink-raised);
+}
+.back-cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 6%;
+  width: 1.5px;
+  height: 34%;
+  background: linear-gradient(to bottom, var(--color-red), transparent);
+  box-shadow: 0 0 6px rgb(196 30 30 / 0.7);
+}
 .face-spine,
 .face-edge {
   top: 0;
